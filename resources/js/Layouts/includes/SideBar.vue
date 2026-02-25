@@ -645,7 +645,23 @@ const logout = () => {
                         <div class="menu-icon">
                             <i class="fa fa-file-alt"></i>
                         </div>
-                        <div class="menu-text">Lista de Usuarios</div>
+                        <div class="menu-text">
+                            Lista de Producción de productos
+                        </div> </Link
+                    ><Link :href="route('reportes.usuarios')" class="menu-link">
+                        <div class="menu-icon">
+                            <i class="fa fa-file-alt"></i>
+                        </div>
+                        <div class="menu-text">
+                            Reporte de Calidad de Productos
+                        </div> </Link
+                    ><Link :href="route('reportes.usuarios')" class="menu-link">
+                        <div class="menu-icon">
+                            <i class="fa fa-file-alt"></i>
+                        </div>
+                        <div class="menu-text">
+                            Reporte Cantidad de Producción Según Calidad
+                        </div>
                     </Link>
                 </div>
                 <div
