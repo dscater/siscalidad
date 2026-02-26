@@ -1,6 +1,6 @@
 <script setup>
 import { useForm, usePage } from "@inertiajs/vue3";
-import { useTipoPatologias } from "@/composables/tipo_patologias/useTipoPatologias";
+import { useProductos } from "@/composables/productos/useProductos";
 import { useAxios } from "@/composables/axios/useAxios";
 import { watch, ref, computed, defineEmits, onMounted, nextTick } from "vue";
 import axios from "axios";
@@ -15,11 +15,11 @@ const props = defineProps({
     },
 });
 
-const { oTipoPatologia, limpiarTipoPatologia } = useTipoPatologias();
+const { oProducto, limpiarProducto } = useProductos();
 const { axiosGet } = useAxios();
 const accion = ref(props.accion_dialog);
 const dialog = ref(props.open_dialog);
-let form = useForm(oTipoPatologia.value);
+let form = useForm(oProducto.value);
 watch(
     () => props.open_dialog,
     async (newValue) => {
@@ -28,30 +28,30 @@ watch(
             document
                 .getElementsByTagName("body")[0]
                 .classList.add("modal-open");
-            form = useForm(oTipoPatologia.value);
+            form = useForm(oProducto.value);
         }
-    }
+    },
 );
 watch(
     () => props.accion_dialog,
     (newValue) => {
         accion.value = newValue;
-    }
+    },
 );
 
 const { flash, auth } = usePage().props;
 
 const tituloDialog = computed(() => {
     return accion.value == 0
-        ? `<i class="fa fa-plus"></i> Nuevo Tipo de Patologia`
-        : `<i class="fa fa-edit"></i> Editar Tipo de Patologia`;
+        ? `<i class="fa fa-plus"></i> Nuevo Producto`
+        : `<i class="fa fa-edit"></i> Editar Producto`;
 });
 
 const enviarFormulario = () => {
     let url =
         form["_method"] == "POST"
-            ? route("tipo_patologias.store")
-            : route("tipo_patologias.update", form.id);
+            ? route("productos.store")
+            : route("productos.update", form.id);
 
     form.post(url, {
         preserveScroll: true,
@@ -65,7 +65,7 @@ const enviarFormulario = () => {
                 confirmButtonColor: "#3085d6",
                 confirmButtonText: `Aceptar`,
             });
-            limpiarTipoPatologia();
+            limpiarProducto();
             emits("envio-formulario");
         },
         onError: (err) => {
@@ -77,8 +77,8 @@ const enviarFormulario = () => {
                     flash.error
                         ? flash.error
                         : err.error
-                        ? err.error
-                        : "Hay errores en el formulario"
+                          ? err.error
+                          : "Hay errores en el formulario"
                 }`,
                 confirmButtonColor: "#3085d6",
                 confirmButtonText: `Aceptar`,
@@ -134,9 +134,9 @@ onMounted(() => {});
                                     obligatorios</small
                                 >
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <label class="required"
-                                    >Nombre del Patologia</label
+                                    >Nombre del Producto</label
                                 >
                                 <el-input
                                     type="text"
@@ -152,26 +152,6 @@ onMounted(() => {});
                                 >
                                     <li class="parsley-required">
                                         {{ form.errors?.nombre }}
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-md-6">
-                                <label>Descripción</label>
-                                <el-input
-                                    type="textipo_patologia"
-                                    :class="{
-                                        'parsley-error':
-                                            form.errors?.descripcion,
-                                    }"
-                                    v-model="form.descripcion"
-                                    autosize
-                                ></el-input>
-                                <ul
-                                    v-if="form.errors?.descripcion"
-                                    class="parsley-errors-list filled"
-                                >
-                                    <li class="parsley-required">
-                                        {{ form.errors?.descripcion }}
                                     </li>
                                 </ul>
                             </div>

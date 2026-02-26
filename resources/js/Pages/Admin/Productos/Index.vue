@@ -1,7 +1,7 @@
 <script setup>
 import { useApp } from "@/composables/useApp";
 import { Head, Link, router, usePage } from "@inertiajs/vue3";
-import { useTipoPatologias } from "@/composables/tipo_patologias/useTipoPatologias";
+import { useProductos } from "@/composables/productos/useProductos";
 import { useAxios } from "@/composables/axios/useAxios";
 import { initDataTable } from "@/composables/datatable.js";
 import { ref, onMounted, onBeforeUnmount } from "vue";
@@ -17,7 +17,7 @@ onMounted(() => {
     }, 300);
 });
 
-const { setTipoPatologia, limpiarTipoPatologia } = useTipoPatologias();
+const { setProducto, limpiarProducto } = useProductos();
 const { axiosDelete } = useAxios();
 
 const columns = [
@@ -26,72 +26,66 @@ const columns = [
         data: "id",
     },
     {
-        title: "NOMBRE DEL DOCUMENTO",
+        title: "NOMBRE",
         data: "nombre",
-    },
-    {
-        title: "DESCRIPCIÓN",
-        data: "descripcion",
     },
     {
         title: "FECHA DE REGISTRO",
         data: "fecha_registro_t",
     },
-    // {
-    //     title: "ACCIONES",
-    //     data: null,
-    //     render: function (data, type, row) {
-    //         let buttons = ``;
+    {
+        title: "ACCIONES",
+        data: null,
+        render: function (data, type, row) {
+            let buttons = ``;
 
-    //         if (
-    //             props_page.auth?.user.permisos == "*" ||
-    //             props_page.auth?.user.permisos.includes("tipo_patologias.edit")
-    //         ) {
-    //             buttons += `<button class="mx-0 rounded-0 btn btn-warning editar" data-id="${row.id}"><i class="fa fa-edit"></i></button>`;
-    //         }
+            if (
+                props_page.auth?.user.permisos == "*" ||
+                props_page.auth?.user.permisos.includes("productos.edit")
+            ) {
+                buttons += `<button class="mx-0 rounded-0 btn btn-warning editar" data-id="${row.id}"><i class="fa fa-edit"></i></button>`;
+            }
 
-    //         if (
-    //             props_page.auth?.user.permisos == "*" ||
-    //             props_page.auth?.user.permisos.includes(
-    //                 "tipo_patologias.destroy"
-    //             )
-    //         ) {
-    //             buttons += ` <button class="mx-0 rounded-0 btn btn-danger eliminar"
-    //              data-id="${row.id}"
-    //              data-nombre="${row.nombre}"
-    //              data-url="${route(
-    //                  "tipo_patologias.destroy",
-    //                  row.id
-    //              )}"><i class="fa fa-trash"></i></button>`;
-    //         }
+            if (
+                props_page.auth?.user.permisos == "*" ||
+                props_page.auth?.user.permisos.includes("productos.destroy")
+            ) {
+                buttons += ` <button class="mx-0 rounded-0 btn btn-danger eliminar"
+                 data-id="${row.id}"
+                 data-nombre="${row.nombre}"
+                 data-url="${route(
+                     "productos.destroy",
+                     row.id,
+                 )}"><i class="fa fa-trash"></i></button>`;
+            }
 
-    //         return buttons;
-    //     },
-    // },
+            return buttons;
+        },
+    },
 ];
 const loading = ref(false);
 const accion_dialog = ref(0);
 const open_dialog = ref(false);
 
 const agregarRegistro = () => {
-    limpiarTipoPatologia();
+    limpiarProducto();
     accion_dialog.value = 0;
     open_dialog.value = true;
 };
 
 const accionesRow = () => {
     // editar
-    $("#table-tipo_patologia").on("click", "button.editar", function (e) {
+    $("#table-producto").on("click", "button.editar", function (e) {
         e.preventDefault();
         let id = $(this).attr("data-id");
-        axios.get(route("tipo_patologias.show", id)).then((response) => {
-            setTipoPatologia(response.data);
+        axios.get(route("productos.show", id)).then((response) => {
+            setProducto(response.data);
             accion_dialog.value = 1;
             open_dialog.value = true;
         });
     });
     // eliminar
-    $("#table-tipo_patologia").on("click", "button.eliminar", function (e) {
+    $("#table-producto").on("click", "button.eliminar", function (e) {
         e.preventDefault();
         let nombre = $(this).attr("data-nombre");
         let id = $(this).attr("data-id");
@@ -107,7 +101,7 @@ const accionesRow = () => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
                 let respuesta = await axiosDelete(
-                    route("tipo_patologias.destroy", id)
+                    route("productos.destroy", id),
                 );
                 if (respuesta && respuesta.sw) {
                     updateDatatable();
@@ -128,9 +122,9 @@ const updateDatatable = () => {
 
 onMounted(async () => {
     datatable = initDataTable(
-        "#table-tipo_patologia",
+        "#table-producto",
         columns,
-        route("tipo_patologias.api")
+        route("productos.api"),
     );
     input_search = document.querySelector('input[type="search"]');
 
@@ -157,16 +151,16 @@ onBeforeUnmount(() => {
 });
 </script>
 <template>
-    <Head title="Tipo de Patologias"></Head>
+    <Head title="Productos"></Head>
 
     <!-- BEGIN breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="javascript:;">Inicio</a></li>
-        <li class="breadcrumb-item active">Tipo de Patologias</li>
+        <li class="breadcrumb-item active">Productos</li>
     </ol>
     <!-- END breadcrumb -->
     <!-- BEGIN page-header -->
-    <h1 class="page-header">Tipo de Patologias</h1>
+    <h1 class="page-header">Productos</h1>
     <!-- END page-header -->
 
     <div class="row">
@@ -174,13 +168,13 @@ onBeforeUnmount(() => {
             <!-- BEGIN panel -->
             <div class="panel panel-inverse">
                 <!-- BEGIN panel-heading -->
-                <!-- <div class="panel-heading">
+                <div class="panel-heading">
                     <h4 class="panel-title btn-nuevo">
                         <button
                             v-if="
                                 props_page.auth?.user.permisos == '*' ||
                                 props_page.auth?.user.permisos.includes(
-                                    'tipo_patologias.create'
+                                    'productos.create',
                                 )
                             "
                             type="button"
@@ -190,16 +184,16 @@ onBeforeUnmount(() => {
                             <i class="fa fa-plus"></i> Nuevo
                         </button>
                     </h4>
-                    <panel-toolbar
+                    <!-- <panel-toolbar
                         :mostrar_loading="loading"
                         @loading="updateDatatable"
-                    />
-                </div> -->
+                    /> -->
+                </div>
                 <!-- END panel-heading -->
                 <!-- BEGIN panel-body -->
                 <div class="panel-body">
                     <table
-                        id="table-tipo_patologia"
+                        id="table-producto"
                         width="100%"
                         class="table table-striped table-bordered align-middle text-nowrap tabla_datos"
                     >
@@ -208,7 +202,7 @@ onBeforeUnmount(() => {
                                 <th width="5%"></th>
                                 <th></th>
                                 <th></th>
-                                <th></th>
+                                <th width="5%"></th>
                             </tr>
                         </thead>
                         <div class="loading_table" v-show="loading_table">

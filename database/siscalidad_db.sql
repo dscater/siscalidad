@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 25-02-2026 a las 15:26:11
+-- Tiempo de generación: 26-02-2026 a las 18:58:39
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.2.22
 
@@ -86,6 +86,17 @@ CREATE TABLE `historial_accions` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `historial_accions`
+--
+
+INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `datos_original`, `datos_nuevo`, `modulo`, `fecha`, `hora`, `created_at`, `updated_at`) VALUES
+(1, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN PRODUCTO', '{\"id\": 1, \"nombre\": \"PRODUCTO 1\", \"created_at\": \"2026-02-26T18:52:39.000000Z\", \"updated_at\": \"2026-02-26T18:52:39.000000Z\", \"fecha_registro\": \"26/02/2026\"}', NULL, 'PRODUCTOS', '2026-02-26', '14:52:39', '2026-02-26 18:52:39', '2026-02-26 18:52:39'),
+(2, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN PRODUCTO', '{\"id\": 2, \"nombre\": \"PRODUCTO 2\", \"created_at\": \"2026-02-26T18:53:37.000000Z\", \"updated_at\": \"2026-02-26T18:53:37.000000Z\", \"fecha_registro\": \"2026-02-26\"}', NULL, 'PRODUCTOS', '2026-02-26', '14:53:37', '2026-02-26 18:53:37', '2026-02-26 18:53:37'),
+(3, 1, 'MODIFICACIÓN', 'EL USUARIO admin ACTUALIZÓ UN PRODUCTO', '{\"id\": 2, \"nombre\": \"PRODUCTO 2\", \"created_at\": \"2026-02-26T18:53:37.000000Z\", \"updated_at\": \"2026-02-26T18:53:37.000000Z\", \"fecha_registro\": \"2026-02-26\"}', '{\"id\": 2, \"nombre\": \"PRODUCTO 2ASD\", \"created_at\": \"2026-02-26T18:53:37.000000Z\", \"updated_at\": \"2026-02-26T18:53:41.000000Z\", \"fecha_registro\": \"2026-02-26\"}', 'PRODUCTOS', '2026-02-26', '14:53:41', '2026-02-26 18:53:41', '2026-02-26 18:53:41'),
+(4, 1, 'ELIMINACIÓN', 'EL USUARIO admin ELIMINÓ UN PRODUCTO', '{\"id\": 2, \"nombre\": \"PRODUCTO 2ASD\", \"created_at\": \"2026-02-26T18:53:37.000000Z\", \"updated_at\": \"2026-02-26T18:53:41.000000Z\", \"fecha_registro\": \"2026-02-26\", \"parametrizacions\": []}', NULL, 'PRODUCTOS', '2026-02-26', '14:57:48', '2026-02-26 18:57:48', '2026-02-26 18:57:48'),
+(5, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN PRODUCTO', '{\"id\": 2, \"nombre\": \"PRODUCTO 2\", \"created_at\": \"2026-02-26T18:58:30.000000Z\", \"updated_at\": \"2026-02-26T18:58:30.000000Z\", \"fecha_registro\": \"2026-02-26\"}', NULL, 'PRODUCTOS', '2026-02-26', '14:58:30', '2026-02-26 18:58:30', '2026-02-26 18:58:30');
+
 -- --------------------------------------------------------
 
 --
@@ -163,6 +174,14 @@ CREATE TABLE `productos` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`id`, `nombre`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(1, 'PRODUCTO 1', '2026-02-26', '2026-02-26 18:52:39', '2026-02-26 18:52:39'),
+(2, 'PRODUCTO 2', '2026-02-26', '2026-02-26 18:58:30', '2026-02-26 18:58:30');
 
 -- --------------------------------------------------------
 
@@ -274,7 +293,7 @@ ALTER TABLE `control_calidads`
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -298,7 +317,7 @@ ALTER TABLE `produccions`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
