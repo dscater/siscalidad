@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 26-02-2026 a las 18:58:39
+-- Tiempo de generación: 28-02-2026 a las 19:57:22
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.2.22
 
@@ -95,7 +95,13 @@ INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `dato
 (2, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN PRODUCTO', '{\"id\": 2, \"nombre\": \"PRODUCTO 2\", \"created_at\": \"2026-02-26T18:53:37.000000Z\", \"updated_at\": \"2026-02-26T18:53:37.000000Z\", \"fecha_registro\": \"2026-02-26\"}', NULL, 'PRODUCTOS', '2026-02-26', '14:53:37', '2026-02-26 18:53:37', '2026-02-26 18:53:37'),
 (3, 1, 'MODIFICACIÓN', 'EL USUARIO admin ACTUALIZÓ UN PRODUCTO', '{\"id\": 2, \"nombre\": \"PRODUCTO 2\", \"created_at\": \"2026-02-26T18:53:37.000000Z\", \"updated_at\": \"2026-02-26T18:53:37.000000Z\", \"fecha_registro\": \"2026-02-26\"}', '{\"id\": 2, \"nombre\": \"PRODUCTO 2ASD\", \"created_at\": \"2026-02-26T18:53:37.000000Z\", \"updated_at\": \"2026-02-26T18:53:41.000000Z\", \"fecha_registro\": \"2026-02-26\"}', 'PRODUCTOS', '2026-02-26', '14:53:41', '2026-02-26 18:53:41', '2026-02-26 18:53:41'),
 (4, 1, 'ELIMINACIÓN', 'EL USUARIO admin ELIMINÓ UN PRODUCTO', '{\"id\": 2, \"nombre\": \"PRODUCTO 2ASD\", \"created_at\": \"2026-02-26T18:53:37.000000Z\", \"updated_at\": \"2026-02-26T18:53:41.000000Z\", \"fecha_registro\": \"2026-02-26\", \"parametrizacions\": []}', NULL, 'PRODUCTOS', '2026-02-26', '14:57:48', '2026-02-26 18:57:48', '2026-02-26 18:57:48'),
-(5, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN PRODUCTO', '{\"id\": 2, \"nombre\": \"PRODUCTO 2\", \"created_at\": \"2026-02-26T18:58:30.000000Z\", \"updated_at\": \"2026-02-26T18:58:30.000000Z\", \"fecha_registro\": \"2026-02-26\"}', NULL, 'PRODUCTOS', '2026-02-26', '14:58:30', '2026-02-26 18:58:30', '2026-02-26 18:58:30');
+(5, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN PRODUCTO', '{\"id\": 2, \"nombre\": \"PRODUCTO 2\", \"created_at\": \"2026-02-26T18:58:30.000000Z\", \"updated_at\": \"2026-02-26T18:58:30.000000Z\", \"fecha_registro\": \"2026-02-26\"}', NULL, 'PRODUCTOS', '2026-02-26', '14:58:30', '2026-02-26 18:58:30', '2026-02-26 18:58:30'),
+(6, 1, 'MODIFICACIÓN', 'EL USUARIO admin ACTUALIZÓ UNA PARAMETRIZACIÓN', '{\"id\": 21, \"ca_horas\": 0, \"cb_horas\": 0, \"cm_horas\": 0, \"co_horas\": 0, \"ca_calidad\": 0, \"cb_calidad\": 0, \"cm_calidad\": 0, \"co_calidad\": 0, \"created_at\": \"2026-02-28T19:31:49.000000Z\", \"updated_at\": \"2026-02-28T19:31:49.000000Z\", \"nro_proceso\": 1, \"producto_id\": 1}', '{\"id\": 21, \"ca_horas\": 0, \"cb_horas\": 0, \"cm_horas\": \"5\", \"co_horas\": 0, \"ca_calidad\": 0, \"cb_calidad\": 0, \"cm_calidad\": 0, \"co_calidad\": 0, \"created_at\": \"2026-02-28T19:31:49.000000Z\", \"updated_at\": \"2026-02-28T19:49:53.000000Z\", \"nro_proceso\": 1, \"producto_id\": 1}', 'PARAMETRIZACIÓN', '2026-02-28', '15:49:53', '2026-02-28 19:49:53', '2026-02-28 19:49:53'),
+(7, 1, 'MODIFICACIÓN', 'EL USUARIO admin ACTUALIZÓ UNA PARAMETRIZACIÓN', '{\"id\": 21, \"ca_horas\": 0, \"cb_horas\": 0, \"cm_horas\": 5, \"co_horas\": 0, \"ca_calidad\": 0, \"cb_calidad\": 0, \"cm_calidad\": 0, \"co_calidad\": 0, \"created_at\": \"2026-02-28T19:31:49.000000Z\", \"updated_at\": \"2026-02-28T19:49:53.000000Z\", \"nro_proceso\": 1, \"producto_id\": 1}', '{\"id\": 21, \"ca_horas\": 0, \"cb_horas\": 0, \"cm_horas\": \"6\", \"co_horas\": 0, \"ca_calidad\": 0, \"cb_calidad\": 0, \"cm_calidad\": 0, \"co_calidad\": 0, \"created_at\": \"2026-02-28T19:31:49.000000Z\", \"updated_at\": \"2026-02-28T19:50:51.000000Z\", \"nro_proceso\": 1, \"producto_id\": 1}', 'PARAMETRIZACIÓN', '2026-02-28', '15:50:51', '2026-02-28 19:50:51', '2026-02-28 19:50:51'),
+(8, 1, 'MODIFICACIÓN', 'EL USUARIO admin ACTUALIZÓ UNA PARAMETRIZACIÓN', '{\"id\": 21, \"ca_horas\": 0, \"cb_horas\": 0, \"cm_horas\": 6, \"co_horas\": 0, \"ca_calidad\": 0, \"cb_calidad\": 0, \"cm_calidad\": 0, \"co_calidad\": 0, \"created_at\": \"2026-02-28T19:31:49.000000Z\", \"updated_at\": \"2026-02-28T19:50:51.000000Z\", \"nro_proceso\": 1, \"producto_id\": 1}', '{\"id\": 21, \"ca_horas\": 0, \"cb_horas\": 0, \"cm_horas\": \"20\", \"co_horas\": 0, \"ca_calidad\": 0, \"cb_calidad\": 0, \"cm_calidad\": 0, \"co_calidad\": 0, \"created_at\": \"2026-02-28T19:31:49.000000Z\", \"updated_at\": \"2026-02-28T19:52:12.000000Z\", \"nro_proceso\": 1, \"producto_id\": 1}', 'PARAMETRIZACIÓN', '2026-02-28', '15:52:12', '2026-02-28 19:52:12', '2026-02-28 19:52:12'),
+(9, 1, 'MODIFICACIÓN', 'EL USUARIO admin ACTUALIZÓ UNA PARAMETRIZACIÓN', '{\"id\": 21, \"ca_horas\": 0, \"cb_horas\": 0, \"cm_horas\": 20, \"co_horas\": 0, \"ca_calidad\": 0, \"cb_calidad\": 0, \"cm_calidad\": 0, \"co_calidad\": 0, \"created_at\": \"2026-02-28T19:31:49.000000Z\", \"updated_at\": \"2026-02-28T19:52:12.000000Z\", \"nro_proceso\": 1, \"producto_id\": 1}', '{\"id\": 21, \"ca_horas\": 0, \"cb_horas\": 0, \"cm_horas\": 20, \"co_horas\": 0, \"ca_calidad\": 0, \"cb_calidad\": 0, \"cm_calidad\": \"1\", \"co_calidad\": 0, \"created_at\": \"2026-02-28T19:31:49.000000Z\", \"updated_at\": \"2026-02-28T19:56:49.000000Z\", \"nro_proceso\": 1, \"producto_id\": 1}', 'PARAMETRIZACIÓN', '2026-02-28', '15:56:49', '2026-02-28 19:56:49', '2026-02-28 19:56:49'),
+(10, 1, 'MODIFICACIÓN', 'EL USUARIO admin ACTUALIZÓ UNA PARAMETRIZACIÓN', '{\"id\": 21, \"ca_horas\": 0, \"cb_horas\": 0, \"cm_horas\": 20, \"co_horas\": 0, \"ca_calidad\": 0, \"cb_calidad\": 0, \"cm_calidad\": 1, \"co_calidad\": 0, \"created_at\": \"2026-02-28T19:31:49.000000Z\", \"updated_at\": \"2026-02-28T19:56:49.000000Z\", \"nro_proceso\": 1, \"producto_id\": 1}', '{\"id\": 21, \"ca_horas\": 0, \"cb_horas\": 0, \"cm_horas\": 20, \"co_horas\": 0, \"ca_calidad\": 0, \"cb_calidad\": 0, \"cm_calidad\": \"3\", \"co_calidad\": 0, \"created_at\": \"2026-02-28T19:31:49.000000Z\", \"updated_at\": \"2026-02-28T19:56:51.000000Z\", \"nro_proceso\": 1, \"producto_id\": 1}', 'PARAMETRIZACIÓN', '2026-02-28', '15:56:51', '2026-02-28 19:56:51', '2026-02-28 19:56:51'),
+(11, 1, 'MODIFICACIÓN', 'EL USUARIO admin ACTUALIZÓ UNA PARAMETRIZACIÓN', '{\"id\": 21, \"ca_horas\": 0, \"cb_horas\": 0, \"cm_horas\": 20, \"co_horas\": 0, \"ca_calidad\": 0, \"cb_calidad\": 0, \"cm_calidad\": 3, \"co_calidad\": 0, \"created_at\": \"2026-02-28T19:31:49.000000Z\", \"updated_at\": \"2026-02-28T19:56:51.000000Z\", \"nro_proceso\": 1, \"producto_id\": 1}', '{\"id\": 21, \"ca_horas\": 0, \"cb_horas\": 0, \"cm_horas\": 20, \"co_horas\": 0, \"ca_calidad\": 0, \"cb_calidad\": 0, \"cm_calidad\": \"40\", \"co_calidad\": 0, \"created_at\": \"2026-02-28T19:31:49.000000Z\", \"updated_at\": \"2026-02-28T19:56:53.000000Z\", \"nro_proceso\": 1, \"producto_id\": 1}', 'PARAMETRIZACIÓN', '2026-02-28', '15:56:53', '2026-02-28 19:56:53', '2026-02-28 19:56:53');
 
 -- --------------------------------------------------------
 
@@ -143,6 +149,52 @@ CREATE TABLE `parametrizacions` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `parametrizacions`
+--
+
+INSERT INTO `parametrizacions` (`id`, `producto_id`, `nro_proceso`, `cm_horas`, `cm_calidad`, `cb_horas`, `cb_calidad`, `ca_horas`, `ca_calidad`, `co_horas`, `co_calidad`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:30', '2026-02-28 19:31:30'),
+(2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:30', '2026-02-28 19:31:30'),
+(3, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:30', '2026-02-28 19:31:30'),
+(4, 2, 4, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:30', '2026-02-28 19:31:30'),
+(5, 2, 5, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:30', '2026-02-28 19:31:30'),
+(6, 2, 6, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:30', '2026-02-28 19:31:30'),
+(7, 2, 7, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:30', '2026-02-28 19:31:30'),
+(8, 2, 8, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:30', '2026-02-28 19:31:30'),
+(9, 2, 9, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:30', '2026-02-28 19:31:30'),
+(10, 2, 10, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:30', '2026-02-28 19:31:30'),
+(11, 2, 11, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:30', '2026-02-28 19:31:30'),
+(12, 2, 12, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:30', '2026-02-28 19:31:30'),
+(13, 2, 13, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:30', '2026-02-28 19:31:30'),
+(14, 2, 14, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:30', '2026-02-28 19:31:30'),
+(15, 2, 15, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:30', '2026-02-28 19:31:30'),
+(16, 2, 16, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:30', '2026-02-28 19:31:30'),
+(17, 2, 17, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:30', '2026-02-28 19:31:30'),
+(18, 2, 18, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:30', '2026-02-28 19:31:30'),
+(19, 2, 19, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:30', '2026-02-28 19:31:30'),
+(20, 2, 20, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:30', '2026-02-28 19:31:30'),
+(21, 1, 1, 20, 40, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:49', '2026-02-28 19:56:53'),
+(22, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:49', '2026-02-28 19:31:49'),
+(23, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:49', '2026-02-28 19:31:49'),
+(24, 1, 4, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:49', '2026-02-28 19:31:49'),
+(25, 1, 5, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:49', '2026-02-28 19:31:49'),
+(26, 1, 6, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:49', '2026-02-28 19:31:49'),
+(27, 1, 7, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:49', '2026-02-28 19:31:49'),
+(28, 1, 8, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:49', '2026-02-28 19:31:49'),
+(29, 1, 9, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:49', '2026-02-28 19:31:49'),
+(30, 1, 10, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:49', '2026-02-28 19:31:49'),
+(31, 1, 11, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:49', '2026-02-28 19:31:49'),
+(32, 1, 12, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:49', '2026-02-28 19:31:49'),
+(33, 1, 13, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:49', '2026-02-28 19:31:49'),
+(34, 1, 14, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:49', '2026-02-28 19:31:49'),
+(35, 1, 15, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:49', '2026-02-28 19:31:49'),
+(36, 1, 16, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:49', '2026-02-28 19:31:49'),
+(37, 1, 17, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:49', '2026-02-28 19:31:49'),
+(38, 1, 18, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:49', '2026-02-28 19:31:49'),
+(39, 1, 19, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:49', '2026-02-28 19:31:49'),
+(40, 1, 20, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:49', '2026-02-28 19:31:49');
 
 -- --------------------------------------------------------
 
@@ -293,7 +345,7 @@ ALTER TABLE `control_calidads`
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -305,7 +357,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `parametrizacions`
 --
 ALTER TABLE `parametrizacions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT de la tabla `produccions`

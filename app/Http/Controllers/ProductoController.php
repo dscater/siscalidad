@@ -17,7 +17,7 @@ use Inertia\Response as InertiaResponse;
 
 class ProductoController extends Controller
 {
-    public function __construct(private ProductoService $tipoPatologiaService) {}
+    public function __construct(private ProductoService $productoService) {}
 
     /**
      * Página index
@@ -37,7 +37,7 @@ class ProductoController extends Controller
     public function listado(): JsonResponse
     {
         return response()->JSON([
-            "productos" => $this->tipoPatologiaService->listado()
+            "productos" => $this->productoService->listado()
         ]);
     }
 
@@ -49,7 +49,7 @@ class ProductoController extends Controller
     public function listadoPortal(): JsonResponse
     {
         return response()->JSON([
-            "productos" => $this->tipoPatologiaService->listado()
+            "productos" => $this->productoService->listado()
         ]);
     }
 
@@ -67,7 +67,7 @@ class ProductoController extends Controller
         $page = (int)(($start / $length) + 1); // Cálculo de la página actual
         $search = (string)$request->input('search', '');
 
-        $usuarios = $this->tipoPatologiaService->listadoDataTable($length, $start, $page, $search);
+        $usuarios = $this->productoService->listadoDataTable($length, $start, $page, $search);
 
         return response()->JSON([
             'data' => $usuarios->items(),
@@ -88,7 +88,7 @@ class ProductoController extends Controller
         DB::beginTransaction();
         try {
             // crear el Producto
-            $this->tipoPatologiaService->crear($request->validated());
+            $this->productoService->crear($request->validated());
             DB::commit();
             return redirect()->route("productos.index")->with("bien", "Registro realizado");
         } catch (\Exception $e) {
@@ -115,7 +115,7 @@ class ProductoController extends Controller
         DB::beginTransaction();
         try {
             // actualizar producto
-            $this->tipoPatologiaService->actualizar($request->validated(), $producto);
+            $this->productoService->actualizar($request->validated(), $producto);
             DB::commit();
             return redirect()->route("productos.index")->with("bien", "Registro actualizado");
         } catch (\Exception $e) {
@@ -137,7 +137,7 @@ class ProductoController extends Controller
     {
         DB::beginTransaction();
         try {
-            $this->tipoPatologiaService->eliminar($producto);
+            $this->productoService->eliminar($producto);
             DB::commit();
             return response()->JSON([
                 'sw' => true,

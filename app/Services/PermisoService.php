@@ -38,6 +38,7 @@ class PermisoService
             "parametrizacions.show",
             "parametrizacions.update",
             "parametrizacions.destroy",
+            "parametrizacions.parametrizacionProducto",
 
             "produccions.api",
             "produccions.listado",

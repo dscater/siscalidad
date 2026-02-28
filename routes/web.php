@@ -94,6 +94,7 @@ Route::middleware(['auth', 'permisoUsuario'])->prefix("admin")->group(function (
     Route::get("parametrizacions/api", [ParametrizacionController::class, 'api'])->name("parametrizacions.api");
     Route::get("parametrizacions/paginado", [ParametrizacionController::class, 'paginado'])->name("parametrizacions.paginado");
     Route::get("parametrizacions/listado", [ParametrizacionController::class, 'listado'])->name("parametrizacions.listado");
+    Route::get("parametrizacions/parametrizacionProducto", [ParametrizacionController::class, 'parametrizacionProducto'])->name("parametrizacions.parametrizacionProducto");
     Route::resource("parametrizacions", ParametrizacionController::class)->only(
         ["index", "store", "edit", "show", "update", "destroy"]
     );
