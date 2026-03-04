@@ -47,7 +47,32 @@ const { oConfiguracion } = useConfiguracion();
 
 const { props } = usePage();
 
+const listProduccions = ref([]);
+
+const cargarProduccions = async () => {
+    axios.get(route("produccions.listado")).then(async (response) => {
+        listProduccions.value = response.data.produccions;
+        for (let item of listProduccions.value) {
+            item.calidad_inteligente = await obtenerCalidadInteligente(item.id);
+        }
+    });
+};
+
+const obtenerCalidadInteligente = async (id) => {
+    const response = await axios.get(route("algoritmo_inteligente.calcular"), {
+        params: { produccion_id: id },
+    });
+    return response.data.resultado;
+};
+
+const intervaProduccions = ref(null);
+
 onMounted(() => {
+    cargarProduccions();
+    intervaProduccions.value = setInterval(() => {
+        cargarProduccions();
+    }, 3500);
+
     setTimeout(() => {
         setLoading(false);
     }, 300);
@@ -88,6 +113,40 @@ onMounted(() => {
                 </div>
             </div>
         </div>
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Monitoreo</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead class="bg-primary">
+                            <tr>
+                                <th class="text-white">CÓDIGO</th>
+                                <th class="text-white">PRODUCTO</th>
+                                <th class="text-white">ESTADO</th>
+                                <th class="text-white">CALIDAD ACTUAL</th>
+                                <th class="text-white">CALIDAD PRONOSTICADA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr
+                                v-for="item in listProduccions"
+                                :class="item.calidad"
+                            >
+                                <td>{{ item.id }}</td>
+                                <td>{{ item.producto.nombre }}</td>
+                                <td>{{ item.estado }}</td>
+                                <td>{{ item.calidad }}</td>
+                                <td :class="item.calidad_inteligente">
+                                    {{ item.calidad_inteligente }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <style scoped>
@@ -113,5 +172,36 @@ onMounted(() => {
     font-weight: bold;
     font-size: 1.3em;
     flex-direction: column;
+}
+
+.ÓPTIMA {
+    background-color: rgb(179, 255, 179);
+}
+.ACEPTABLE {
+    background-color: rgb(255, 255, 179);
+}
+.BAJA {
+    background-color: rgb(255, 179, 179);
+}
+.MALA td {
+    color: white;
+    background-color: rgb(255, 102, 102);
+}
+
+td.ÓPTIMA {
+    font-weight: bold;
+    color: lime;
+}
+td.ACEPTABLE {
+    font-weight: bold;
+    color: limegreen;
+}
+td.BAJA {
+    font-weight: bold;
+    color: bisque;
+}
+td.MALA {
+    font-weight: bold;
+    color: red;
 }
 </style>

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>HistorialPacientes</title>
+    <title>Producción</title>
     <style type="text/css">
         * {
             font-family: sans-serif;
@@ -159,20 +159,18 @@
         <h2 class="titulo">
             {{ $configuracion->first()->nombre_sistema }}
         </h2>
-        <h4 class="texto">HISTORIAL DE PACIENTES</h4>
+        <h4 class="texto">LISTA DE PRODUCCIÓN DE PRODUCTOS</h4>
         <h4 class="fecha">Expedido: {{ date('d-m-Y') }}</h4>
     </div>
     <table border="1">
         <thead class="bg-principal">
             <tr>
-                <th width="3%">N°</th>
-                <th>PATERNO</th>
-                <th>MATERNO</th>
-                <th>NOMBRE(S)</th>
-                <th>C.I.</th>
-                <th>GÉNERO</th>
-                <th>MOTIVO CONSULTA</th>
-                <th>HISTORIAL ENFERMEDAD ACTUAL</th>
+                <th width="7%">CÓDIGO</th>
+                <th>PRODUCTO</th>
+                <th>FECHA DE INICIO</th>
+                <th>DESCRIPCIÓN</th>
+                <th>ESTADO</th>
+                <th>CALIDAD</th>
                 <th width="9%">FECHA DE REGISTRO</th>
             </tr>
         </thead>
@@ -180,51 +178,15 @@
             @php
                 $cont = 1;
             @endphp
-            @foreach ($historial_pacientes as $key => $historial)
-                @php
-                    $color = '';
-                    if ($key % 2 == 0) {
-                        $color = 'crema';
-                    }
-                @endphp
-                <tr class="{{ $color }}">
-                    <td class="centreado">{{ $cont++ }}</td>
-                    <td class="">{{ $historial->paciente->paterno }}</td>
-                    <td class="">{{ $historial->paciente->materno }}</td>
-                    <td class="">{{ $historial->paciente->nombre }}</td>
-                    <td class="">{{ $historial->paciente->full_ci }}</td>
-                    <td class="">{{ $historial->paciente->genero }}</td>
-                    <td class="">{{ $historial->motivo_consulta }}</td>
-                    <td class="">{{ $historial->historial_enfermedad }}</td>
-                    <td class="centreado">{{ $historial->fecha_registro_t }}</td>
-                </tr>
-                <tr class="{{ $color }}">
-                    <td colspan="2" class="bold">ANTECEDENTES PATOLÓGICAS PERSONALES</td>
-                    <td colspan="7">{{ $historial->antecedentes_personales }}</td>
-                </tr>
-                <tr class="{{ $color }}">
-                    <td colspan="2" class="bold">ANTECEDENTES PATOLÓGICAS FAMILIARES</td>
-                    <td colspan="7">{{ $historial->antecedentes_familiares }}</td>
-                </tr>
-                <tr class="{{ $color }}">
-                    <td colspan="2" class="bold">ANTECEDENTES NO PATOLÓGICAS PERSONALES</td>
-                    <td colspan="7">{{ $historial->antecedentes_no_personales }}</td>
-                </tr>
-                <tr class="{{ $color }}">
-                    <td colspan="2" class="bold">EXÁMENES NEUROLÓGICOS</td>
-                    <td colspan="7">{{ $historial->examenes_neurologicos }}</td>
-                </tr>
-                <tr class="{{ $color }}">
-                    <td colspan="2" class="bold">TRATAMIENTOS</td>
-                    <td colspan="7">{{ $historial->tratamientos }}</td>
-                </tr>
-                <tr class="{{ $color }}">
-                    <td colspan="2" class="bold">EVOLUCIONES</td>
-                    <td colspan="7">{{ $historial->evoluciones }}</td>
-                </tr>
-                <tr class="{{ $color }}">
-                    <td colspan="2" class="bold">CONSULTAS SEGUIMIENTOS</td>
-                    <td colspan="7">{{ $historial->consultas }}</td>
+            @foreach ($produccions as $key => $produccion)
+                <tr>
+                    <td class="">{{ $produccion->id }}</td>
+                    <td class="">{{ $produccion->producto->nombre }}</td>
+                    <td class="">{{ $produccion->fecha_inicio_t }}</td>
+                    <td class="">{{ $produccion->descripcion }}</td>
+                    <td class="">{{ $produccion->estado }}</td>
+                    <td class="">{{ $produccion->calidad }}</td>
+                    <td class="centreado">{{ $produccion->fecha_registro_t }}</td>
                 </tr>
             @endforeach
         </tbody>

@@ -36,25 +36,28 @@ const txtBtn = computed(() => {
     return "Generar Grafico";
 });
 
-const listTipoPatologias = ref([
+const listCalidads = ref([
     {
-        id: "todos",
-        nombre: "TODOS",
+        value: "todos",
+        label: "TODOS",
     },
     {
-        id: 1,
-        nombre: "EPILEPSIA",
+        value: "MALA",
+        label: "MALA",
     },
     {
-        id: 2,
-        nombre: "ENCEFALOPATIAS",
+        value: "BAJA",
+        label: "BAJA",
     },
     {
-        id: 3,
-        nombre: "NORMAL",
+        value: "ACEPTABLE",
+        label: "ACEPTABLE",
+    },
+    {
+        value: "ÓPTIMA",
+        label: "ÓPTIMA",
     },
 ]);
-const listPacientes = ref([]);
 
 const obtenerFechaActual = () => {
     const fecha = new Date();
@@ -65,25 +68,15 @@ const obtenerFechaActual = () => {
 };
 
 const form = ref({
-    paciente_id: "todos",
-    tipo_patologia_id: "todos",
+    calidad: "todos",
     fecha_ini: "",
     fecha_fin: "",
 });
 
-const getPacientes = () => {
-    axios.get(route("pacientes.listado")).then((response) => {
-        listPacientes.value = response.data.pacientes;
-        listPacientes.value.unshift({
-            ...{ id: "todos", label: "TODOS", full_name: "TODOS" },
-        });
-    });
-};
-
 const generarGrafico = async () => {
     generando.value = true;
     axios
-        .get(route("reportes.r_gdiagnosticos"), {
+        .get(route("reportes.r_cantidad_productos"), {
             params: form.value,
         })
         .then((response) => {
@@ -95,7 +88,7 @@ const generarGrafico = async () => {
                     renderChart(
                         containerId,
                         response.data.categories,
-                        response.data.data
+                        response.data.data,
                     );
                 } else {
                     console.error(`Contenedor ${containerId} no válido.`);
@@ -124,7 +117,7 @@ const renderChart = (containerId, categories, data) => {
         },
         title: {
             align: "center",
-            text: `REPORTE DIAGNÓSTICOS`,
+            text: `CANTIDAD DE PRODUCCIÓN DE PRODUCTOS SEGÚN CALIDAD`,
         },
         subtitle: {
             align: "center",
@@ -152,7 +145,9 @@ const renderChart = (containerId, categories, data) => {
                 borderWidth: 0,
                 dataLabels: {
                     enabled: true,
-                    // format: "{point.y}",
+                    formatter: function () {
+                        return this.point.y;
+                    },
                     style: {
                         fontSize: "11px",
                         fontWeight: "bold",
@@ -176,7 +171,7 @@ const renderChart = (containerId, categories, data) => {
 
         series: [
             {
-                name: "Reporte Diagnósticos",
+                name: "Reporte Cantidad de Producción segun Calidad",
                 data: data,
                 colorByPoint: true,
             },
@@ -185,22 +180,25 @@ const renderChart = (containerId, categories, data) => {
 };
 
 onMounted(() => {
-    getPacientes();
     setTimeout(() => {
         setLoading(false);
     }, 300);
 });
 </script>
 <template>
-    <Head title="Reporte Diagnósticos"></Head>
+    <Head title="Reporte Cantidad de Producción Según Calidad"></Head>
     <!-- BEGIN breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="javascript:;">Inicio</a></li>
-        <li class="breadcrumb-item active">Gráficas > Reporte Diagnósticos</li>
+        <li class="breadcrumb-item active">
+            Gráficas > Reporte Cantidad de Producción Según Calidad
+        </li>
     </ol>
     <!-- END breadcrumb -->
     <!-- BEGIN page-header -->
-    <h1 class="page-header">Gráficas > Reporte Diagnósticos</h1>
+    <h1 class="page-header">
+        Gráficas > Reporte Cantidad de Producción Según Calidad
+    </h1>
     <!-- END page-header -->
     <div class="row">
         <div class="col-md-6 mx-auto">
@@ -209,25 +207,13 @@ onMounted(() => {
                     <form @submit.prevent="generarReporte">
                         <div class="row">
                             <div class="col-md-12">
-                                <label>Seleccionar Paciente*</label>
-                                <el-select v-model="form.paciente_id">
+                                <label>Calidad*</label>
+                                <el-select v-model="form.calidad">
                                     <el-option
-                                        v-for="item in listPacientes"
-                                        :value="item.id"
-                                        :key="item.id"
-                                        :label="item.full_name"
-                                    >
-                                    </el-option>
-                                </el-select>
-                            </div>
-                            <div class="col-md-12 mt-2">
-                                <label>Seleccionar Diagnóstico*</label>
-                                <el-select v-model="form.tipo_patologia_id">
-                                    <el-option
-                                        v-for="item in listTipoPatologias"
-                                        :value="item.id"
-                                        :key="item.id"
-                                        :label="item.nombre"
+                                        v-for="item in listCalidads"
+                                        :value="item.value"
+                                        :key="item.value"
+                                        :label="item.label"
                                     >
                                     </el-option>
                                 </el-select>

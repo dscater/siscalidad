@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlgoritmoInteligenteController;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ConfiguracionController;
@@ -103,25 +104,29 @@ Route::middleware(['auth', 'permisoUsuario'])->prefix("admin")->group(function (
     Route::get("produccions/api", [ProduccionController::class, 'api'])->name("produccions.api");
     Route::get("produccions/paginado", [ProduccionController::class, 'paginado'])->name("produccions.paginado");
     Route::get("produccions/listado", [ProduccionController::class, 'listado'])->name("produccions.listado");
+    Route::get("produccions/control_calidad/{produccion}", [ProduccionController::class, 'control_calidad'])->name("produccions.control_calidad");
+    Route::put("produccions/updateControlCalidad/{control_calidad}", [ProduccionController::class, 'updateControlCalidad'])->name("produccions.updateControlCalidad");
     Route::resource("produccions", ProduccionController::class)->only(
         ["index", "store", "edit", "show", "update", "destroy"]
     );
+
+    Route::get("algoritmo_inteligente", [AlgoritmoInteligenteController::class, 'calcular'])->name("algoritmo_inteligente.calcular");
 
 
     // REPORTES
     Route::get('reportes/usuarios', [ReporteController::class, 'usuarios'])->name("reportes.usuarios");
     Route::get('reportes/r_usuarios', [ReporteController::class, 'r_usuarios'])->name("reportes.r_usuarios");
 
-    Route::get('reportes/pacientes', [ReporteController::class, 'pacientes'])->name("reportes.pacientes");
-    Route::get('reportes/r_pacientes', [ReporteController::class, 'r_pacientes'])->name("reportes.r_pacientes");
+    Route::get('reportes/productos', [ReporteController::class, 'productos'])->name("reportes.productos");
+    Route::get('reportes/r_productos', [ReporteController::class, 'r_productos'])->name("reportes.r_productos");
 
-    Route::get('reportes/historial', [ReporteController::class, 'historial'])->name("reportes.historial");
-    Route::get('reportes/r_historial', [ReporteController::class, 'r_historial'])->name("reportes.r_historial");
+    Route::get('reportes/produccions', [ReporteController::class, 'produccions'])->name("reportes.produccions");
+    Route::get('reportes/r_produccions', [ReporteController::class, 'r_produccions'])->name("reportes.r_produccions");
 
-    Route::get('reportes/diagnosticos', [ReporteController::class, 'diagnosticos'])->name("reportes.diagnosticos");
-    Route::get('reportes/r_diagnosticos', [ReporteController::class, 'r_diagnosticos'])->name("reportes.r_diagnosticos");
+    Route::get('reportes/calidad_productos', [ReporteController::class, 'calidad_productos'])->name("reportes.calidad_productos");
+    Route::get('reportes/r_calidad_productos', [ReporteController::class, 'r_calidad_productos'])->name("reportes.r_calidad_productos");
 
-    Route::get('reportes/gdiagnosticos', [ReporteController::class, 'gdiagnosticos'])->name("reportes.gdiagnosticos");
-    Route::get('reportes/r_gdiagnosticos', [ReporteController::class, 'r_gdiagnosticos'])->name("reportes.r_gdiagnosticos");
+    Route::get('reportes/cantidad_productos', [ReporteController::class, 'cantidad_productos'])->name("reportes.cantidad_productos");
+    Route::get('reportes/r_cantidad_productos', [ReporteController::class, 'r_cantidad_productos'])->name("reportes.r_cantidad_productos");
 });
 require __DIR__ . '/auth.php';

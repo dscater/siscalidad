@@ -9,11 +9,14 @@ use App\Models\Diagnostico;
 use App\Models\HistorialOferta;
 use App\Models\HistorialPaciente;
 use App\Models\Paciente;
+use App\Models\Produccion;
+use App\Models\Producto;
 use App\Models\Publicacion;
 use App\Models\PublicacionDetalle;
 use App\Models\SubastaCliente;
 use App\Models\Tarea;
 use App\Models\User;
+use App\Services\ProduccionService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -23,6 +26,8 @@ use Carbon\Carbon;
 
 class ReporteController extends Controller
 {
+    public function __construct(private ProduccionService $produccion_service) {}
+
     public function usuarios()
     {
         return Inertia::render("Admin/Reportes/Usuarios");
@@ -56,23 +61,19 @@ class ReporteController extends Controller
         return $pdf->stream('usuarios.pdf');
     }
 
-    public function pacientes()
+    public function productos()
     {
-        return Inertia::render("Admin/Reportes/Pacientes");
+        return Inertia::render("Admin/Reportes/Productos");
     }
-    public function r_pacientes(Request $request)
+    public function r_productos(Request $request)
     {
         $fecha_ini =  $request->fecha_ini;
         $fecha_fin =  $request->fecha_fin;
-        $pacientes = Paciente::select("pacientes.*");
+        $productos = Producto::select("productos.*");
 
-        if ($fecha_ini && $fecha_fin) {
-            $pacientes->whereBetween('fecha_registro', [$fecha_ini, $fecha_fin]);
-        }
+        $productos = $productos->get();
 
-        $pacientes = $pacientes->where("status", 1)->get();
-
-        $pdf = PDF::loadView('reportes.pacientes', compact('pacientes'))->setPaper('letter', 'landscape');
+        $pdf = PDF::loadView('reportes.productos', compact('productos'))->setPaper('letter', 'portrait');
 
         // ENUMERAR LAS PÁGINAS USANDO CANVAS
         $pdf->output();
@@ -82,30 +83,36 @@ class ReporteController extends Controller
         $ancho = $canvas->get_width();
         $canvas->page_text($ancho - 90, $alto - 25, "Página {PAGE_NUM} de {PAGE_COUNT}", null, 9, array(0, 0, 0));
 
-        return $pdf->stream('pacientes.pdf');
+        return $pdf->stream('productos.pdf');
     }
 
-    public function historial()
+    public function produccions()
     {
-        return Inertia::render("Admin/Reportes/Historial");
+        return Inertia::render("Admin/Reportes/Produccions");
     }
-    public function r_historial(Request $request)
+    public function r_produccions(Request $request)
     {
-        $paciente_id =  $request->paciente_id;
+        $produccion_id =  $request->produccion_id;
+        $estado =  $request->estado;
         $fecha_ini =  $request->fecha_ini;
         $fecha_fin =  $request->fecha_fin;
-        $historial_pacientes = HistorialPaciente::select("historial_pacientes.*");
+        $produccions = Produccion::select("produccions.*");
 
-        if ($paciente_id != 'todos') {
-            $historial_pacientes->where('paciente_id', $paciente_id);
+        if ($produccion_id != 'todos') {
+            $produccions->where('produccion_id', $produccion_id);
         }
+
+        if ($estado != 'todos') {
+            $produccions->where('estado', $estado);
+        }
+
         if ($fecha_ini && $fecha_fin) {
-            $historial_pacientes->whereBetween('fecha_registro', [$fecha_ini, $fecha_fin]);
+            $produccions->whereBetween('fecha_registro', [$fecha_ini, $fecha_fin]);
         }
 
-        $historial_pacientes = $historial_pacientes->get();
+        $produccions = $produccions->get();
 
-        $pdf = PDF::loadView('reportes.historial_pacientes', compact('historial_pacientes'))->setPaper('legal', 'landscape');
+        $pdf = PDF::loadView('reportes.produccions', compact('produccions'))->setPaper('legal', 'portrait');
 
         // ENUMERAR LAS PÁGINAS USANDO CANVAS
         $pdf->output();
@@ -115,91 +122,109 @@ class ReporteController extends Controller
         $ancho = $canvas->get_width();
         $canvas->page_text($ancho - 90, $alto - 25, "Página {PAGE_NUM} de {PAGE_COUNT}", null, 9, array(0, 0, 0));
 
-        return $pdf->stream('historial_pacientes.pdf');
+        return $pdf->stream('produccions.pdf');
+    }
+    public function calidad_productos()
+    {
+        return Inertia::render("Admin/Reportes/CalidadProductos");
     }
 
-    public function diagnosticos()
+    public function r_calidad_productos(Request $request)
     {
-        return Inertia::render("Admin/Reportes/Diagnosticos");
-    }
-    public function r_diagnosticos(Request $request)
-    {
-        $paciente_id =  $request->paciente_id;
-        $tipo_patologia_id =  $request->tipo_patologia_id;
-        $fecha_ini =  $request->fecha_ini;
-        $fecha_fin =  $request->fecha_fin;
-        $diagnosticos = Diagnostico::select("diagnosticos.*");
-
-        if ($paciente_id != 'todos') {
-            $diagnosticos->where('paciente_id', $paciente_id);
-        }
-        if ($tipo_patologia_id != 'todos') {
-            $diagnosticos->where('tipo_patologia_id', $tipo_patologia_id);
-        }
-        if ($fecha_ini && $fecha_fin) {
-            $diagnosticos->whereBetween('fecha_registro', [$fecha_ini, $fecha_fin]);
-        }
-
-        $diagnosticos = $diagnosticos->get();
-
-        $pdf = PDF::loadView('reportes.diagnosticos', compact('diagnosticos'))->setPaper('letter', 'portrait');
-
-        // ENUMERAR LAS PÁGINAS USANDO CANVAS
-        $pdf->output();
-        $dom_pdf = $pdf->getDomPDF();
-        $canvas = $dom_pdf->get_canvas();
-        $alto = $canvas->get_height();
-        $ancho = $canvas->get_width();
-        $canvas->page_text($ancho - 90, $alto - 25, "Página {PAGE_NUM} de {PAGE_COUNT}", null, 9, array(0, 0, 0));
-
-        return $pdf->stream('diagnosticos.pdf');
-    }
-
-    public function gdiagnosticos()
-    {
-        return Inertia::render("Admin/Reportes/GDiagnosticos");
-    }
-
-    public function r_gdiagnosticos(Request $request)
-    {
-        $paciente_id =  $request->paciente_id;
-        $tipo_patologia_id =  $request->tipo_patologia_id;
+        $calidad =  $request->calidad;
         $fecha_ini =  $request->fecha_ini;
         $fecha_fin =  $request->fecha_fin;
 
 
-        $tipos = ["EPILEPSIA", "ENCEFALOPATIAS", "NORMAL"];
+        $tipos = ["MALA", "BAJA", "ACEPTABLE", "ÓPTIMA"];
         $listTipos =  [
-            1 => "EPILEPSIA",
-            2 => "ENCEFALOPATIAS",
-            3 => "NORMAL"
+            0 => "MALA",
+            1 => "BAJA",
+            2 => "ACEPTABLE",
+            3 => "ÓPTIMA"
         ];
-        if ($tipo_patologia_id != 'todos') {
-            $tipos = [$listTipos[$tipo_patologia_id]];
+        if ($calidad != 'todos') {
+            $tipos = [$listTipos[$calidad]];
         }
 
         $colores = [
-            "EPILEPSIA" => "#28a745",   // verde
-            "ENCEFALOPATIAS" => "#ffc107",  // amarillo
-            "NORMAL" => "#fd7e14",   // naranja
+            "MALA" => "#dc3545",   // rojo
+            "BAJA" => "#ffc107",  // amarillo
+            "ACEPTABLE" => "#fd7e14",   // naranja
+            "ÓPTIMA" => "#28a745",   // verde
         ];
 
         $data = [];
-        foreach ($tipos as $key => $tipo) {
-            $diagnosticos = Diagnostico::where("status", 1);
+        $productos = Producto::all();
+        foreach ($productos as $producto) {
+            $produccion = Produccion::where("producto_id", $producto->id);
             if ($fecha_ini && $fecha_fin) {
-                $diagnosticos->whereBetween("fecha_registro", [$fecha_ini, $fecha_fin]);
+                $produccion->whereBetween("fecha_registro", [$fecha_ini, $fecha_fin]);
             }
-            if ($paciente_id != 'todos') {
-                $diagnosticos->where("paciente_id", $paciente_id);
+            $produccion->where("estado", "FINALIZADO");
+            $produccion = $produccion->get()->last();
+
+            // obtener el promedio de horas
+            if ($produccion) {
+                $calidad = $produccion->calidad;
+                if (in_array($calidad, $tipos)) {
+                    $data[] = [
+                        'name' => $producto->nombre,
+                        // promedio de horas
+                        'y' => $this->produccion_service->getPromedioHorasProcesos($produccion->id),
+                        'color' => $colores[$calidad] ?? '#000000',
+                        'calidad' => $calidad,
+                    ];
+                }
             }
+        }
 
-            $diagnosticos = $diagnosticos->where("diagnostico", $tipo)->count();
+        return response()->JSON([
+            "categories" => $tipos,
+            "data" => $data,
+        ]);
+    }
+    public function cantidad_productos()
+    {
+        return Inertia::render("Admin/Reportes/CantidadProductos");
+    }
 
+    public function r_cantidad_productos(Request $request)
+    {
+        $calidad =  $request->calidad;
+        $fecha_ini =  $request->fecha_ini;
+        $fecha_fin =  $request->fecha_fin;
+
+
+        $tipos = ["MALA", "BAJA", "ACEPTABLE", "ÓPTIMA"];
+        $listTipos =  [
+            0 => "MALA",
+            1 => "BAJA",
+            2 => "ACEPTABLE",
+            3 => "ÓPTIMA"
+        ];
+        if ($calidad != 'todos') {
+            $tipos = [$listTipos[$calidad]];
+        }
+
+        $colores = [
+            "MALA" => "#dc3545",   // rojo
+            "BAJA" => "#ffc107",  // amarillo
+            "ACEPTABLE" => "#fd7e14",   // naranja
+            "ÓPTIMA" => "#28a745",   // verde
+        ];
+
+        $data = [];
+        foreach ($tipos as $tipo) {
+            $produccions = Produccion::where("calidad", $tipo);
+            if ($fecha_ini && $fecha_fin) {
+                $produccions->whereBetween("fecha_registro", [$fecha_ini, $fecha_fin]);
+            }
+            $produccions = $produccions->where("estado", "FINALIZADO")->count();
             $data[] = [
                 'name' => $tipo,
-                'y' => (float) $diagnosticos,
-                'color' => $colores[$tipo] ?? '#000000'
+                'y' => $produccions,
+                'color' => $colores[$tipo] ?? '#000000',
             ];
         }
 

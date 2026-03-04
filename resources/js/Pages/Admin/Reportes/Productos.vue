@@ -46,7 +46,7 @@ const txtBtn = computed(() => {
 
 const generarReporte = () => {
     generando.value = true;
-    const url = route("reportes.r_pacientes", form.value);
+    const url = route("reportes.r_productos", form.value);
     window.open(url, "_blank");
     setTimeout(() => {
         generando.value = false;
@@ -54,15 +54,15 @@ const generarReporte = () => {
 };
 </script>
 <template>
-    <Head title="Reporte Pacientes"></Head>
+    <Head title="Reporte Productos"></Head>
     <!-- BEGIN breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="javascript:;">Inicio</a></li>
-        <li class="breadcrumb-item active">Reportes > Pacientes</li>
+        <li class="breadcrumb-item active">Reportes > Productos</li>
     </ol>
     <!-- END breadcrumb -->
     <!-- BEGIN page-header -->
-    <h1 class="page-header">Reportes > Pacientes</h1>
+    <h1 class="page-header">Reportes > Productos</h1>
     <!-- END page-header -->
     <div class="row">
         <div class="col-md-6 mx-auto">
@@ -70,25 +70,6 @@ const generarReporte = () => {
                 <div class="card-body">
                     <form @submit.prevent="generarReporte">
                         <div class="row">
-                            <div class="col-md-12">
-                                <label>Rango de fechas</label>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <input
-                                            type="date"
-                                            class="form-control"
-                                            v-model="form.fecha_ini"
-                                        />
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input
-                                            type="date"
-                                            class="form-control"
-                                            v-model="form.fecha_fin"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
                             <div class="col-md-12 text-center mt-3">
                                 <button
                                     class="btn btn-primary"

@@ -24,41 +24,41 @@ const { setLoading } = useApp();
 
 const cargarListas = () => {};
 
-const listPacientes = ref([]);
+const listProduccions = ref([]);
 
 onMounted(() => {
     cargarListas();
-    getPacientes();
+    getProduccions();
     setTimeout(() => {
         setLoading(false);
     }, 300);
 });
 
-const listTipoPatologias = ref([
-    {
-        id: "todos",
-        nombre: "TODOS",
-    },
-    {
-        id: 1,
-        nombre: "EPILEPSIA",
-    },
-    {
-        id: 2,
-        nombre: "ENCEFALOPATIAS",
-    },
-    {
-        id: 3,
-        nombre: "NORMAL",
-    },
-]);
-
 const form = ref({
-    paciente_id: "todos",
-    tipo_patologia_id: "todos",
+    produccion_id: "todos",
+    estado: "todos",
     fecha_ini: "",
     fecha_fin: "",
 });
+
+const listEstados = ref([
+    {
+        id: "todos",
+        label: "TODOS",
+    },
+    {
+        id: "INICIADO",
+        label: "INICIADO",
+    },
+    {
+        id: "EN PROCESO",
+        label: "EN PROCESO",
+    },
+    {
+        id: "FINALIZADO",
+        label: "FINALIZADO",
+    },
+]);
 
 const generando = ref(false);
 const txtBtn = computed(() => {
@@ -70,32 +70,34 @@ const txtBtn = computed(() => {
 
 const generarReporte = () => {
     generando.value = true;
-    const url = route("reportes.r_diagnosticos", form.value);
+    const url = route("reportes.r_produccions", form.value);
     window.open(url, "_blank");
     setTimeout(() => {
         generando.value = false;
     }, 500);
 };
 
-const getPacientes = () => {
-    axios.get(route("pacientes.listado")).then((response) => {
-        listPacientes.value = response.data.pacientes;
-        listPacientes.value.unshift({
-            ...{ id: "todos", label: "TODOS", full_name: "TODOS" },
+const getProduccions = () => {
+    axios.get(route("produccions.listado")).then((response) => {
+        listProduccions.value = response.data.produccions;
+        listProduccions.value.unshift({
+            ...{ id: "todos", label: "TODOS", nombre: "TODOS" },
         });
     });
 };
 </script>
 <template>
-    <Head title="Reporte Diagnósticos"></Head>
+    <Head title="Reporte Lista de Producción de Productos"></Head>
     <!-- BEGIN breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="javascript:;">Inicio</a></li>
-        <li class="breadcrumb-item active">Reportes > Diagnósticos</li>
+        <li class="breadcrumb-item active">
+            Reportes > Lista de Producción de Productos
+        </li>
     </ol>
     <!-- END breadcrumb -->
     <!-- BEGIN page-header -->
-    <h1 class="page-header">Reportes > Diagnósticos</h1>
+    <h1 class="page-header">Reportes > Lista de Producción de Productos</h1>
     <!-- END page-header -->
     <div class="row">
         <div class="col-md-6 mx-auto">
@@ -104,25 +106,28 @@ const getPacientes = () => {
                     <form @submit.prevent="generarReporte">
                         <div class="row">
                             <div class="col-md-12">
-                                <label>Seleccionar Paciente*</label>
-                                <el-select v-model="form.paciente_id">
+                                <label>Código de Producción*</label>
+                                <el-select v-model="form.produccion_id">
                                     <el-option
-                                        v-for="item in listPacientes"
+                                        v-for="item in listProduccions"
                                         :value="item.id"
                                         :key="item.id"
-                                        :label="item.full_name"
+                                        :label="
+                                            item.nombre ??
+                                            `${item.id} - ${item.producto.nombre}`
+                                        "
                                     >
                                     </el-option>
                                 </el-select>
                             </div>
-                            <div class="col-md-12 mt-2">
-                                <label>Seleccionar Diagnóstico*</label>
-                                <el-select v-model="form.tipo_patologia_id">
+                            <div class="col-md-12">
+                                <label>Estado</label>
+                                <el-select v-model="form.estado">
                                     <el-option
-                                        v-for="item in listTipoPatologias"
+                                        v-for="item in listEstados"
                                         :value="item.id"
                                         :key="item.id"
-                                        :label="item.nombre"
+                                        :label="item.label"
                                     >
                                     </el-option>
                                 </el-select>

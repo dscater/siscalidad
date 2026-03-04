@@ -35,20 +35,22 @@ watch(
                 .classList.add("modal-open");
             form = useForm(oUsuario.value);
         }
-    }
+    },
 );
 watch(
     () => props.accion_dialog,
     (newValue) => {
         accion.value = newValue;
-    }
+    },
 );
 
 const { flash } = usePage().props;
 
 const listTipos = ref([
     { value: "ADMINISTRADOR", label: "ADMINISTRADOR" },
-    { value: "DOCTOR", label: "DOCTOR" },
+    { value: "GERENTE", label: "GERENTE" },
+    { value: "SUPERVISOR", label: "SUPERVISOR" },
+    { value: "TÉCNICO", label: "TÉCNICO" },
 ]);
 const listExpedido = [
     { value: "LP", label: "La Paz" },
@@ -114,8 +116,8 @@ const enviarFormulario = () => {
                     flash.error
                         ? flash.error
                         : err.error
-                        ? err.error
-                        : "Hay errores en el formulario"
+                          ? err.error
+                          : "Hay errores en el formulario"
                 }`,
                 confirmButtonColor: "#3085d6",
                 confirmButtonText: `Aceptar`,

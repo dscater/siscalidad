@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 28-02-2026 a las 19:57:22
+-- Tiempo de generación: 04-03-2026 a las 14:43:25
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.2.22
 
@@ -66,6 +66,52 @@ CREATE TABLE `control_calidads` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `control_calidads`
+--
+
+INSERT INTO `control_calidads` (`id`, `produccion_id`, `nro_proceso`, `tiempo`, `calidad`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 30, 30, '2026-03-04 12:46:37', '2026-03-04 13:07:45'),
+(2, 1, 2, 20, 70, '2026-03-04 12:46:37', '2026-03-04 14:02:24'),
+(3, 1, 3, NULL, NULL, '2026-03-04 12:46:37', '2026-03-04 12:46:37'),
+(4, 1, 4, NULL, NULL, '2026-03-04 12:46:37', '2026-03-04 12:46:37'),
+(5, 1, 5, NULL, NULL, '2026-03-04 12:46:37', '2026-03-04 12:46:37'),
+(6, 1, 6, NULL, NULL, '2026-03-04 12:46:37', '2026-03-04 12:46:37'),
+(7, 1, 7, NULL, NULL, '2026-03-04 12:46:37', '2026-03-04 12:46:37'),
+(8, 1, 8, NULL, NULL, '2026-03-04 12:46:37', '2026-03-04 12:46:37'),
+(9, 1, 9, NULL, NULL, '2026-03-04 12:46:37', '2026-03-04 12:46:37'),
+(10, 1, 10, NULL, NULL, '2026-03-04 12:46:37', '2026-03-04 12:46:37'),
+(11, 1, 11, NULL, NULL, '2026-03-04 12:46:37', '2026-03-04 12:46:37'),
+(12, 1, 12, NULL, NULL, '2026-03-04 12:46:37', '2026-03-04 12:46:37'),
+(13, 1, 13, NULL, NULL, '2026-03-04 12:46:37', '2026-03-04 12:46:37'),
+(14, 1, 14, NULL, NULL, '2026-03-04 12:46:37', '2026-03-04 12:46:37'),
+(15, 1, 15, NULL, NULL, '2026-03-04 12:46:37', '2026-03-04 12:46:37'),
+(16, 1, 16, NULL, NULL, '2026-03-04 12:46:37', '2026-03-04 12:46:37'),
+(17, 1, 17, NULL, NULL, '2026-03-04 12:46:37', '2026-03-04 12:46:37'),
+(18, 1, 18, NULL, NULL, '2026-03-04 12:46:37', '2026-03-04 12:46:37'),
+(19, 1, 19, NULL, NULL, '2026-03-04 12:46:37', '2026-03-04 12:46:37'),
+(20, 1, 20, NULL, NULL, '2026-03-04 12:46:37', '2026-03-04 12:46:37'),
+(21, 2, 1, 10, 10, '2026-03-04 13:08:59', '2026-03-04 14:02:48'),
+(22, 2, 2, 20, 25, '2026-03-04 13:08:59', '2026-03-04 14:02:50'),
+(23, 2, 3, NULL, NULL, '2026-03-04 13:08:59', '2026-03-04 13:08:59'),
+(24, 2, 4, NULL, NULL, '2026-03-04 13:08:59', '2026-03-04 13:08:59'),
+(25, 2, 5, NULL, NULL, '2026-03-04 13:08:59', '2026-03-04 13:08:59'),
+(26, 2, 6, NULL, NULL, '2026-03-04 13:08:59', '2026-03-04 13:08:59'),
+(27, 2, 7, NULL, NULL, '2026-03-04 13:08:59', '2026-03-04 13:08:59'),
+(28, 2, 8, NULL, NULL, '2026-03-04 13:08:59', '2026-03-04 13:08:59'),
+(29, 2, 9, NULL, NULL, '2026-03-04 13:08:59', '2026-03-04 13:08:59'),
+(30, 2, 10, NULL, NULL, '2026-03-04 13:08:59', '2026-03-04 13:08:59'),
+(31, 2, 11, NULL, NULL, '2026-03-04 13:08:59', '2026-03-04 13:08:59'),
+(32, 2, 12, NULL, NULL, '2026-03-04 13:08:59', '2026-03-04 13:08:59'),
+(33, 2, 13, NULL, NULL, '2026-03-04 13:08:59', '2026-03-04 13:08:59'),
+(34, 2, 14, NULL, NULL, '2026-03-04 13:08:59', '2026-03-04 13:08:59'),
+(35, 2, 15, NULL, NULL, '2026-03-04 13:08:59', '2026-03-04 13:08:59'),
+(36, 2, 16, NULL, NULL, '2026-03-04 13:08:59', '2026-03-04 13:08:59'),
+(37, 2, 17, NULL, NULL, '2026-03-04 13:08:59', '2026-03-04 13:08:59'),
+(38, 2, 18, NULL, NULL, '2026-03-04 13:08:59', '2026-03-04 13:08:59'),
+(39, 2, 19, NULL, NULL, '2026-03-04 13:08:59', '2026-03-04 13:08:59'),
+(40, 2, 20, NULL, NULL, '2026-03-04 13:08:59', '2026-03-04 13:08:59');
+
 -- --------------------------------------------------------
 
 --
@@ -101,7 +147,26 @@ INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `dato
 (8, 1, 'MODIFICACIÓN', 'EL USUARIO admin ACTUALIZÓ UNA PARAMETRIZACIÓN', '{\"id\": 21, \"ca_horas\": 0, \"cb_horas\": 0, \"cm_horas\": 6, \"co_horas\": 0, \"ca_calidad\": 0, \"cb_calidad\": 0, \"cm_calidad\": 0, \"co_calidad\": 0, \"created_at\": \"2026-02-28T19:31:49.000000Z\", \"updated_at\": \"2026-02-28T19:50:51.000000Z\", \"nro_proceso\": 1, \"producto_id\": 1}', '{\"id\": 21, \"ca_horas\": 0, \"cb_horas\": 0, \"cm_horas\": \"20\", \"co_horas\": 0, \"ca_calidad\": 0, \"cb_calidad\": 0, \"cm_calidad\": 0, \"co_calidad\": 0, \"created_at\": \"2026-02-28T19:31:49.000000Z\", \"updated_at\": \"2026-02-28T19:52:12.000000Z\", \"nro_proceso\": 1, \"producto_id\": 1}', 'PARAMETRIZACIÓN', '2026-02-28', '15:52:12', '2026-02-28 19:52:12', '2026-02-28 19:52:12'),
 (9, 1, 'MODIFICACIÓN', 'EL USUARIO admin ACTUALIZÓ UNA PARAMETRIZACIÓN', '{\"id\": 21, \"ca_horas\": 0, \"cb_horas\": 0, \"cm_horas\": 20, \"co_horas\": 0, \"ca_calidad\": 0, \"cb_calidad\": 0, \"cm_calidad\": 0, \"co_calidad\": 0, \"created_at\": \"2026-02-28T19:31:49.000000Z\", \"updated_at\": \"2026-02-28T19:52:12.000000Z\", \"nro_proceso\": 1, \"producto_id\": 1}', '{\"id\": 21, \"ca_horas\": 0, \"cb_horas\": 0, \"cm_horas\": 20, \"co_horas\": 0, \"ca_calidad\": 0, \"cb_calidad\": 0, \"cm_calidad\": \"1\", \"co_calidad\": 0, \"created_at\": \"2026-02-28T19:31:49.000000Z\", \"updated_at\": \"2026-02-28T19:56:49.000000Z\", \"nro_proceso\": 1, \"producto_id\": 1}', 'PARAMETRIZACIÓN', '2026-02-28', '15:56:49', '2026-02-28 19:56:49', '2026-02-28 19:56:49'),
 (10, 1, 'MODIFICACIÓN', 'EL USUARIO admin ACTUALIZÓ UNA PARAMETRIZACIÓN', '{\"id\": 21, \"ca_horas\": 0, \"cb_horas\": 0, \"cm_horas\": 20, \"co_horas\": 0, \"ca_calidad\": 0, \"cb_calidad\": 0, \"cm_calidad\": 1, \"co_calidad\": 0, \"created_at\": \"2026-02-28T19:31:49.000000Z\", \"updated_at\": \"2026-02-28T19:56:49.000000Z\", \"nro_proceso\": 1, \"producto_id\": 1}', '{\"id\": 21, \"ca_horas\": 0, \"cb_horas\": 0, \"cm_horas\": 20, \"co_horas\": 0, \"ca_calidad\": 0, \"cb_calidad\": 0, \"cm_calidad\": \"3\", \"co_calidad\": 0, \"created_at\": \"2026-02-28T19:31:49.000000Z\", \"updated_at\": \"2026-02-28T19:56:51.000000Z\", \"nro_proceso\": 1, \"producto_id\": 1}', 'PARAMETRIZACIÓN', '2026-02-28', '15:56:51', '2026-02-28 19:56:51', '2026-02-28 19:56:51'),
-(11, 1, 'MODIFICACIÓN', 'EL USUARIO admin ACTUALIZÓ UNA PARAMETRIZACIÓN', '{\"id\": 21, \"ca_horas\": 0, \"cb_horas\": 0, \"cm_horas\": 20, \"co_horas\": 0, \"ca_calidad\": 0, \"cb_calidad\": 0, \"cm_calidad\": 3, \"co_calidad\": 0, \"created_at\": \"2026-02-28T19:31:49.000000Z\", \"updated_at\": \"2026-02-28T19:56:51.000000Z\", \"nro_proceso\": 1, \"producto_id\": 1}', '{\"id\": 21, \"ca_horas\": 0, \"cb_horas\": 0, \"cm_horas\": 20, \"co_horas\": 0, \"ca_calidad\": 0, \"cb_calidad\": 0, \"cm_calidad\": \"40\", \"co_calidad\": 0, \"created_at\": \"2026-02-28T19:31:49.000000Z\", \"updated_at\": \"2026-02-28T19:56:53.000000Z\", \"nro_proceso\": 1, \"producto_id\": 1}', 'PARAMETRIZACIÓN', '2026-02-28', '15:56:53', '2026-02-28 19:56:53', '2026-02-28 19:56:53');
+(11, 1, 'MODIFICACIÓN', 'EL USUARIO admin ACTUALIZÓ UNA PARAMETRIZACIÓN', '{\"id\": 21, \"ca_horas\": 0, \"cb_horas\": 0, \"cm_horas\": 20, \"co_horas\": 0, \"ca_calidad\": 0, \"cb_calidad\": 0, \"cm_calidad\": 3, \"co_calidad\": 0, \"created_at\": \"2026-02-28T19:31:49.000000Z\", \"updated_at\": \"2026-02-28T19:56:51.000000Z\", \"nro_proceso\": 1, \"producto_id\": 1}', '{\"id\": 21, \"ca_horas\": 0, \"cb_horas\": 0, \"cm_horas\": 20, \"co_horas\": 0, \"ca_calidad\": 0, \"cb_calidad\": 0, \"cm_calidad\": \"40\", \"co_calidad\": 0, \"created_at\": \"2026-02-28T19:31:49.000000Z\", \"updated_at\": \"2026-02-28T19:56:53.000000Z\", \"nro_proceso\": 1, \"producto_id\": 1}', 'PARAMETRIZACIÓN', '2026-02-28', '15:56:53', '2026-02-28 19:56:53', '2026-02-28 19:56:53'),
+(12, 1, 'CREACIÓN', 'EL USUARIO admin AGREGO UN REGISTRO DE PRODUCCIÓN', '{\"id\": 1, \"estado\": \"INICIADO\", \"created_at\": \"2026-03-04T12:29:26.000000Z\", \"updated_at\": \"2026-03-04T12:29:26.000000Z\", \"descripcion\": \"\", \"producto_id\": \"1\", \"fecha_inicio\": \"2026-03-04\", \"fecha_registro\": \"2026-03-04\"}', NULL, 'PRODUCCIÓN', '2026-03-04', '08:29:26', '2026-03-04 12:29:26', '2026-03-04 12:29:26'),
+(13, 1, 'MODIFICACIÓN', 'EL USUARIO admin ACTUALIZÓ UN REGISTRO DE PRODUCCIÓN', '{\"id\": 1, \"estado\": \"INICIADO\", \"created_at\": \"2026-03-04T12:29:26.000000Z\", \"updated_at\": \"2026-03-04T12:29:26.000000Z\", \"descripcion\": \"\", \"producto_id\": 1, \"fecha_inicio\": \"2026-03-04\", \"fecha_registro\": \"2026-03-04\"}', '{\"id\": 1, \"estado\": \"INICIADO\", \"created_at\": \"2026-03-04T12:29:26.000000Z\", \"updated_at\": \"2026-03-04T12:31:26.000000Z\", \"descripcion\": \"DESC\", \"producto_id\": \"1\", \"fecha_inicio\": \"2026-03-04\", \"fecha_registro\": \"2026-03-04\"}', 'PRODUCCIÓN', '2026-03-04', '08:31:26', '2026-03-04 12:31:26', '2026-03-04 12:31:26'),
+(14, 1, 'ELIMINACIÓN', 'EL USUARIO admin ELIMINÓ UN REGISTRO DE PRODUCCIÓN', '{\"id\": 1, \"estado\": \"INICIADO\", \"created_at\": \"2026-03-04T12:29:26.000000Z\", \"updated_at\": \"2026-03-04T12:31:26.000000Z\", \"descripcion\": \"DESC\", \"producto_id\": 1, \"fecha_inicio\": \"2026-03-04\", \"fecha_registro\": \"2026-03-04\", \"control_calidads\": []}', NULL, 'PRODUCCIÓN', '2026-03-04', '08:33:15', '2026-03-04 12:33:15', '2026-03-04 12:33:15'),
+(15, 1, 'CREACIÓN', 'EL USUARIO admin AGREGO UN REGISTRO DE PRODUCCIÓN', '{\"id\": 1, \"estado\": \"INICIADO\", \"created_at\": \"2026-03-04T12:33:51.000000Z\", \"updated_at\": \"2026-03-04T12:33:51.000000Z\", \"descripcion\": \"DESC\", \"producto_id\": \"1\", \"fecha_inicio\": \"2026-03-04\", \"fecha_registro\": \"2026-03-04\"}', NULL, 'PRODUCCIÓN', '2026-03-04', '08:33:51', '2026-03-04 12:33:51', '2026-03-04 12:33:51'),
+(16, 1, 'CREACIÓN', 'EL USUARIO admin AGREGO UN REGISTRO DE PRODUCCIÓN', '{\"id\": 2, \"estado\": \"INICIADO\", \"created_at\": \"2026-03-04T12:34:01.000000Z\", \"updated_at\": \"2026-03-04T12:34:01.000000Z\", \"descripcion\": \"\", \"producto_id\": \"2\", \"fecha_inicio\": \"2026-04-07\", \"fecha_registro\": \"2026-03-04\"}', NULL, 'PRODUCCIÓN', '2026-03-04', '08:34:01', '2026-03-04 12:34:01', '2026-03-04 12:34:01'),
+(17, 1, 'MODIFICACIÓN', 'EL USUARIO admin ACTUALIZÓ UN CONTROL DE CALIDAD', '{\"id\": 1, \"tiempo\": null, \"calidad\": null, \"created_at\": \"2026-03-04T12:46:37.000000Z\", \"updated_at\": \"2026-03-04T12:46:37.000000Z\", \"nro_proceso\": 1, \"produccion_id\": 1}', '{\"id\": 1, \"tiempo\": \"30\", \"calidad\": null, \"created_at\": \"2026-03-04T12:46:37.000000Z\", \"produccion\": {\"id\": 1, \"estado\": \"INICIADO\", \"created_at\": \"2026-03-04T12:33:51.000000Z\", \"updated_at\": \"2026-03-04T12:33:51.000000Z\", \"descripcion\": \"DESC\", \"producto_id\": 1, \"fecha_inicio\": \"2026-03-04\", \"fecha_inicio_t\": \"04/03/2026\", \"fecha_registro\": \"2026-03-04\", \"fecha_registro_t\": \"04/03/2026\"}, \"updated_at\": \"2026-03-04T13:06:40.000000Z\", \"nro_proceso\": 1, \"produccion_id\": 1}', 'PRODUCCIÓN', '2026-03-04', '09:06:40', '2026-03-04 13:06:40', '2026-03-04 13:06:40'),
+(18, 1, 'MODIFICACIÓN', 'EL USUARIO admin ACTUALIZÓ UN CONTROL DE CALIDAD', '{\"id\": 1, \"tiempo\": 30, \"calidad\": null, \"created_at\": \"2026-03-04T12:46:37.000000Z\", \"updated_at\": \"2026-03-04T13:06:40.000000Z\", \"nro_proceso\": 1, \"produccion_id\": 1}', '{\"id\": 1, \"tiempo\": 30, \"calidad\": \"30\", \"created_at\": \"2026-03-04T12:46:37.000000Z\", \"produccion\": {\"id\": 1, \"estado\": \"ENPROCESO\", \"created_at\": \"2026-03-04T12:33:51.000000Z\", \"updated_at\": \"2026-03-04T13:07:45.000000Z\", \"descripcion\": \"DESC\", \"producto_id\": 1, \"fecha_inicio\": \"2026-03-04\", \"fecha_inicio_t\": \"04/03/2026\", \"fecha_registro\": \"2026-03-04\", \"fecha_registro_t\": \"04/03/2026\"}, \"updated_at\": \"2026-03-04T13:07:45.000000Z\", \"nro_proceso\": 1, \"produccion_id\": 1}', 'PRODUCCIÓN', '2026-03-04', '09:07:45', '2026-03-04 13:07:45', '2026-03-04 13:07:45'),
+(19, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN USUARIO', '{\"ci\": \"123456\", \"id\": 2, \"dir\": \"LOS PEDREGALES\", \"fono\": \"78787878\", \"foto\": \"21772630076.jpg\", \"tipo\": \"ADMINISTRADOR\", \"acceso\": \"1\", \"ci_exp\": \"LP\", \"correo\": \"juan@gmail.com\", \"nombre\": \"JUAN\", \"materno\": \"\", \"paterno\": \"PERES\", \"usuario\": \"JPERES\", \"created_at\": \"2026-03-04T13:14:36.000000Z\", \"updated_at\": \"2026-03-04T13:14:36.000000Z\", \"fecha_registro\": \"2026-03-04\"}', NULL, 'USUARIOS', '2026-03-04', '09:14:36', '2026-03-04 13:14:36', '2026-03-04 13:14:36'),
+(20, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN PRODUCTO', '{\"id\": 3, \"nombre\": \"PRODUCTO 3\", \"created_at\": \"2026-03-04T14:01:51.000000Z\", \"updated_at\": \"2026-03-04T14:01:51.000000Z\", \"fecha_registro\": \"2026-03-04\"}', NULL, 'PRODUCTOS', '2026-03-04', '10:01:51', '2026-03-04 14:01:51', '2026-03-04 14:01:51'),
+(21, 1, 'CREACIÓN', 'EL USUARIO admin AGREGO UN REGISTRO DE PRODUCCIÓN', '{\"id\": 3, \"estado\": \"INICIADO\", \"created_at\": \"2026-03-04T14:02:06.000000Z\", \"updated_at\": \"2026-03-04T14:02:06.000000Z\", \"descripcion\": \"\", \"producto_id\": \"3\", \"fecha_inicio\": \"2026-03-20\", \"fecha_registro\": \"2026-03-04\"}', NULL, 'PRODUCCIÓN', '2026-03-04', '10:02:06', '2026-03-04 14:02:06', '2026-03-04 14:02:06'),
+(22, 1, 'MODIFICACIÓN', 'EL USUARIO admin ACTUALIZÓ UN CONTROL DE CALIDAD', '{\"id\": 2, \"tiempo\": null, \"calidad\": null, \"created_at\": \"2026-03-04T12:46:37.000000Z\", \"updated_at\": \"2026-03-04T12:46:37.000000Z\", \"nro_proceso\": 2, \"produccion_id\": 1}', '{\"id\": 2, \"tiempo\": \"20\", \"calidad\": null, \"created_at\": \"2026-03-04T12:46:37.000000Z\", \"produccion\": {\"id\": 1, \"estado\": \"ENPROCESO\", \"calidad\": \"MALA\", \"producto\": {\"id\": 1, \"nombre\": \"PRODUCTO 1\", \"created_at\": \"2026-02-26T18:52:39.000000Z\", \"updated_at\": \"2026-02-26T18:52:39.000000Z\", \"fecha_registro\": \"2026-02-26\", \"fecha_registro_t\": \"26/02/2026\"}, \"created_at\": \"2026-03-04T12:33:51.000000Z\", \"updated_at\": \"2026-03-04T14:02:23.000000Z\", \"calidad_pro\": null, \"descripcion\": \"DESC\", \"producto_id\": 1, \"fecha_inicio\": \"2026-03-04\", \"fecha_inicio_t\": \"04/03/2026\", \"fecha_registro\": \"2026-03-04\", \"fecha_registro_t\": \"04/03/2026\"}, \"updated_at\": \"2026-03-04T14:02:23.000000Z\", \"nro_proceso\": 2, \"produccion_id\": 1}', 'PRODUCCIÓN', '2026-03-04', '10:02:23', '2026-03-04 14:02:23', '2026-03-04 14:02:23'),
+(23, 1, 'MODIFICACIÓN', 'EL USUARIO admin ACTUALIZÓ UN CONTROL DE CALIDAD', '{\"id\": 2, \"tiempo\": 20, \"calidad\": null, \"created_at\": \"2026-03-04T12:46:37.000000Z\", \"updated_at\": \"2026-03-04T14:02:23.000000Z\", \"nro_proceso\": 2, \"produccion_id\": 1}', '{\"id\": 2, \"tiempo\": 20, \"calidad\": \"70\", \"created_at\": \"2026-03-04T12:46:37.000000Z\", \"produccion\": {\"id\": 1, \"estado\": \"ENPROCESO\", \"calidad\": \"MALA\", \"producto\": {\"id\": 1, \"nombre\": \"PRODUCTO 1\", \"created_at\": \"2026-02-26T18:52:39.000000Z\", \"updated_at\": \"2026-02-26T18:52:39.000000Z\", \"fecha_registro\": \"2026-02-26\", \"fecha_registro_t\": \"26/02/2026\"}, \"created_at\": \"2026-03-04T12:33:51.000000Z\", \"updated_at\": \"2026-03-04T14:02:23.000000Z\", \"calidad_pro\": null, \"descripcion\": \"DESC\", \"producto_id\": 1, \"fecha_inicio\": \"2026-03-04\", \"fecha_inicio_t\": \"04/03/2026\", \"fecha_registro\": \"2026-03-04\", \"fecha_registro_t\": \"04/03/2026\"}, \"updated_at\": \"2026-03-04T14:02:24.000000Z\", \"nro_proceso\": 2, \"produccion_id\": 1}', 'PRODUCCIÓN', '2026-03-04', '10:02:24', '2026-03-04 14:02:24', '2026-03-04 14:02:24'),
+(24, 1, 'MODIFICACIÓN', 'EL USUARIO admin ACTUALIZÓ UN CONTROL DE CALIDAD', '{\"id\": 21, \"tiempo\": null, \"calidad\": null, \"created_at\": \"2026-03-04T13:08:59.000000Z\", \"updated_at\": \"2026-03-04T13:08:59.000000Z\", \"nro_proceso\": 1, \"produccion_id\": 2}', '{\"id\": 21, \"tiempo\": \"10\", \"calidad\": null, \"created_at\": \"2026-03-04T13:08:59.000000Z\", \"produccion\": {\"id\": 2, \"estado\": \"INICIADO\", \"calidad\": \"MALA\", \"producto\": {\"id\": 2, \"nombre\": \"PRODUCTO 2\", \"created_at\": \"2026-02-26T18:58:30.000000Z\", \"updated_at\": \"2026-02-26T18:58:30.000000Z\", \"fecha_registro\": \"2026-02-26\", \"fecha_registro_t\": \"26/02/2026\"}, \"created_at\": \"2026-03-04T12:34:01.000000Z\", \"updated_at\": \"2026-03-04T14:02:47.000000Z\", \"calidad_pro\": null, \"descripcion\": \"\", \"producto_id\": 2, \"fecha_inicio\": \"2026-04-07\", \"fecha_inicio_t\": \"07/04/2026\", \"fecha_registro\": \"2026-03-04\", \"fecha_registro_t\": \"04/03/2026\"}, \"updated_at\": \"2026-03-04T14:02:47.000000Z\", \"nro_proceso\": 1, \"produccion_id\": 2}', 'PRODUCCIÓN', '2026-03-04', '10:02:47', '2026-03-04 14:02:47', '2026-03-04 14:02:47'),
+(25, 1, 'MODIFICACIÓN', 'EL USUARIO admin ACTUALIZÓ UN CONTROL DE CALIDAD', '{\"id\": 21, \"tiempo\": 10, \"calidad\": null, \"created_at\": \"2026-03-04T13:08:59.000000Z\", \"updated_at\": \"2026-03-04T14:02:47.000000Z\", \"nro_proceso\": 1, \"produccion_id\": 2}', '{\"id\": 21, \"tiempo\": 10, \"calidad\": \"10\", \"created_at\": \"2026-03-04T13:08:59.000000Z\", \"produccion\": {\"id\": 2, \"estado\": \"ENPROCESO\", \"calidad\": \"MALA\", \"producto\": {\"id\": 2, \"nombre\": \"PRODUCTO 2\", \"created_at\": \"2026-02-26T18:58:30.000000Z\", \"updated_at\": \"2026-02-26T18:58:30.000000Z\", \"fecha_registro\": \"2026-02-26\", \"fecha_registro_t\": \"26/02/2026\"}, \"created_at\": \"2026-03-04T12:34:01.000000Z\", \"updated_at\": \"2026-03-04T14:02:48.000000Z\", \"calidad_pro\": null, \"descripcion\": \"\", \"producto_id\": 2, \"fecha_inicio\": \"2026-04-07\", \"fecha_inicio_t\": \"07/04/2026\", \"fecha_registro\": \"2026-03-04\", \"fecha_registro_t\": \"04/03/2026\"}, \"updated_at\": \"2026-03-04T14:02:48.000000Z\", \"nro_proceso\": 1, \"produccion_id\": 2}', 'PRODUCCIÓN', '2026-03-04', '10:02:48', '2026-03-04 14:02:48', '2026-03-04 14:02:48'),
+(26, 1, 'MODIFICACIÓN', 'EL USUARIO admin ACTUALIZÓ UN CONTROL DE CALIDAD', '{\"id\": 22, \"tiempo\": null, \"calidad\": null, \"created_at\": \"2026-03-04T13:08:59.000000Z\", \"updated_at\": \"2026-03-04T13:08:59.000000Z\", \"nro_proceso\": 2, \"produccion_id\": 2}', '{\"id\": 22, \"tiempo\": \"20\", \"calidad\": null, \"created_at\": \"2026-03-04T13:08:59.000000Z\", \"produccion\": {\"id\": 2, \"estado\": \"ENPROCESO\", \"calidad\": \"MALA\", \"producto\": {\"id\": 2, \"nombre\": \"PRODUCTO 2\", \"created_at\": \"2026-02-26T18:58:30.000000Z\", \"updated_at\": \"2026-02-26T18:58:30.000000Z\", \"fecha_registro\": \"2026-02-26\", \"fecha_registro_t\": \"26/02/2026\"}, \"created_at\": \"2026-03-04T12:34:01.000000Z\", \"updated_at\": \"2026-03-04T14:02:48.000000Z\", \"calidad_pro\": null, \"descripcion\": \"\", \"producto_id\": 2, \"fecha_inicio\": \"2026-04-07\", \"fecha_inicio_t\": \"07/04/2026\", \"fecha_registro\": \"2026-03-04\", \"fecha_registro_t\": \"04/03/2026\"}, \"updated_at\": \"2026-03-04T14:02:49.000000Z\", \"nro_proceso\": 2, \"produccion_id\": 2}', 'PRODUCCIÓN', '2026-03-04', '10:02:49', '2026-03-04 14:02:49', '2026-03-04 14:02:49'),
+(27, 1, 'MODIFICACIÓN', 'EL USUARIO admin ACTUALIZÓ UN CONTROL DE CALIDAD', '{\"id\": 22, \"tiempo\": 20, \"calidad\": null, \"created_at\": \"2026-03-04T13:08:59.000000Z\", \"updated_at\": \"2026-03-04T14:02:49.000000Z\", \"nro_proceso\": 2, \"produccion_id\": 2}', '{\"id\": 22, \"tiempo\": 20, \"calidad\": \"25\", \"created_at\": \"2026-03-04T13:08:59.000000Z\", \"produccion\": {\"id\": 2, \"estado\": \"ENPROCESO\", \"calidad\": \"MALA\", \"producto\": {\"id\": 2, \"nombre\": \"PRODUCTO 2\", \"created_at\": \"2026-02-26T18:58:30.000000Z\", \"updated_at\": \"2026-02-26T18:58:30.000000Z\", \"fecha_registro\": \"2026-02-26\", \"fecha_registro_t\": \"26/02/2026\"}, \"created_at\": \"2026-03-04T12:34:01.000000Z\", \"updated_at\": \"2026-03-04T14:02:48.000000Z\", \"calidad_pro\": null, \"descripcion\": \"\", \"producto_id\": 2, \"fecha_inicio\": \"2026-04-07\", \"fecha_inicio_t\": \"07/04/2026\", \"fecha_registro\": \"2026-03-04\", \"fecha_registro_t\": \"04/03/2026\"}, \"updated_at\": \"2026-03-04T14:02:50.000000Z\", \"nro_proceso\": 2, \"produccion_id\": 2}', 'PRODUCCIÓN', '2026-03-04', '10:02:50', '2026-03-04 14:02:50', '2026-03-04 14:02:50'),
+(28, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN USUARIO', '{\"ci\": \"1234567\", \"id\": 3, \"dir\": \"LOS PEDREGALES\", \"fono\": \"66464564\", \"tipo\": \"GERENTE\", \"acceso\": \"1\", \"ci_exp\": \"CB\", \"correo\": null, \"nombre\": \"MARIA\", \"materno\": \"\", \"paterno\": \"GONZALES\", \"usuario\": \"MGONZALES\", \"created_at\": \"2026-03-04T14:37:34.000000Z\", \"updated_at\": \"2026-03-04T14:37:34.000000Z\", \"fecha_registro\": \"2026-03-04\"}', NULL, 'USUARIOS', '2026-03-04', '10:37:34', '2026-03-04 14:37:34', '2026-03-04 14:37:34'),
+(29, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN USUARIO', '{\"ci\": \"12345678\", \"id\": 4, \"dir\": \"LOS OLIVOS\", \"fono\": \"676767676\", \"tipo\": \"SUPERVISOR\", \"acceso\": \"1\", \"ci_exp\": \"CB\", \"correo\": null, \"nombre\": \"FRANZ\", \"materno\": \"\", \"paterno\": \"RAMIRES\", \"usuario\": \"FRAMIRES\", \"created_at\": \"2026-03-04T14:37:54.000000Z\", \"updated_at\": \"2026-03-04T14:37:54.000000Z\", \"fecha_registro\": \"2026-03-04\"}', NULL, 'USUARIOS', '2026-03-04', '10:37:54', '2026-03-04 14:37:54', '2026-03-04 14:37:54'),
+(30, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN USUARIO', '{\"ci\": \"12345677\", \"id\": 5, \"dir\": \"LOS PEDREGALES\", \"fono\": \"67676767676\", \"tipo\": \"TÉCNICO\", \"acceso\": \"1\", \"ci_exp\": \"LP\", \"correo\": null, \"nombre\": \"ALEX\", \"materno\": \"\", \"paterno\": \"MARTINEZ\", \"usuario\": \"AMARTINEZ\", \"created_at\": \"2026-03-04T14:39:55.000000Z\", \"updated_at\": \"2026-03-04T14:39:55.000000Z\", \"fecha_registro\": \"2026-03-04\"}', NULL, 'USUARIOS', '2026-03-04', '10:39:55', '2026-03-04 14:39:55', '2026-03-04 14:39:55');
 
 -- --------------------------------------------------------
 
@@ -194,7 +259,27 @@ INSERT INTO `parametrizacions` (`id`, `producto_id`, `nro_proceso`, `cm_horas`, 
 (37, 1, 17, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:49', '2026-02-28 19:31:49'),
 (38, 1, 18, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:49', '2026-02-28 19:31:49'),
 (39, 1, 19, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:49', '2026-02-28 19:31:49'),
-(40, 1, 20, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:49', '2026-02-28 19:31:49');
+(40, 1, 20, 0, 0, 0, 0, 0, 0, 0, 0, '2026-02-28 19:31:49', '2026-02-28 19:31:49'),
+(41, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2026-03-04 14:01:56', '2026-03-04 14:01:56'),
+(42, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, '2026-03-04 14:01:56', '2026-03-04 14:01:56'),
+(43, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, '2026-03-04 14:01:56', '2026-03-04 14:01:56'),
+(44, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, '2026-03-04 14:01:56', '2026-03-04 14:01:56'),
+(45, 3, 5, 0, 0, 0, 0, 0, 0, 0, 0, '2026-03-04 14:01:56', '2026-03-04 14:01:56'),
+(46, 3, 6, 0, 0, 0, 0, 0, 0, 0, 0, '2026-03-04 14:01:56', '2026-03-04 14:01:56'),
+(47, 3, 7, 0, 0, 0, 0, 0, 0, 0, 0, '2026-03-04 14:01:56', '2026-03-04 14:01:56'),
+(48, 3, 8, 0, 0, 0, 0, 0, 0, 0, 0, '2026-03-04 14:01:56', '2026-03-04 14:01:56'),
+(49, 3, 9, 0, 0, 0, 0, 0, 0, 0, 0, '2026-03-04 14:01:56', '2026-03-04 14:01:56'),
+(50, 3, 10, 0, 0, 0, 0, 0, 0, 0, 0, '2026-03-04 14:01:56', '2026-03-04 14:01:56'),
+(51, 3, 11, 0, 0, 0, 0, 0, 0, 0, 0, '2026-03-04 14:01:56', '2026-03-04 14:01:56'),
+(52, 3, 12, 0, 0, 0, 0, 0, 0, 0, 0, '2026-03-04 14:01:56', '2026-03-04 14:01:56'),
+(53, 3, 13, 0, 0, 0, 0, 0, 0, 0, 0, '2026-03-04 14:01:56', '2026-03-04 14:01:56'),
+(54, 3, 14, 0, 0, 0, 0, 0, 0, 0, 0, '2026-03-04 14:01:56', '2026-03-04 14:01:56'),
+(55, 3, 15, 0, 0, 0, 0, 0, 0, 0, 0, '2026-03-04 14:01:56', '2026-03-04 14:01:56'),
+(56, 3, 16, 0, 0, 0, 0, 0, 0, 0, 0, '2026-03-04 14:01:56', '2026-03-04 14:01:56'),
+(57, 3, 17, 0, 0, 0, 0, 0, 0, 0, 0, '2026-03-04 14:01:56', '2026-03-04 14:01:56'),
+(58, 3, 18, 0, 0, 0, 0, 0, 0, 0, 0, '2026-03-04 14:01:56', '2026-03-04 14:01:56'),
+(59, 3, 19, 0, 0, 0, 0, 0, 0, 0, 0, '2026-03-04 14:01:56', '2026-03-04 14:01:56'),
+(60, 3, 20, 0, 0, 0, 0, 0, 0, 0, 0, '2026-03-04 14:01:56', '2026-03-04 14:01:56');
 
 -- --------------------------------------------------------
 
@@ -208,10 +293,21 @@ CREATE TABLE `produccions` (
   `fecha_inicio` date NOT NULL,
   `descripcion` text COLLATE utf8mb4_unicode_ci,
   `estado` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'INICIADO',
+  `calidad` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `calidad_pro` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `fecha_registro` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `produccions`
+--
+
+INSERT INTO `produccions` (`id`, `producto_id`, `fecha_inicio`, `descripcion`, `estado`, `calidad`, `calidad_pro`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(1, 1, '2026-03-04', 'DESC', 'EN PROCESO', 'MALA', NULL, '2026-03-04', '2026-03-04 12:33:51', '2026-03-04 14:02:23'),
+(2, 2, '2026-04-07', '', 'EN PROCESO', 'MALA', NULL, '2026-03-04', '2026-03-04 12:34:01', '2026-03-04 14:02:48'),
+(3, 3, '2026-03-20', '', 'INICIADO', NULL, NULL, '2026-03-04', '2026-03-04 14:02:06', '2026-03-04 14:02:06');
 
 -- --------------------------------------------------------
 
@@ -233,7 +329,8 @@ CREATE TABLE `productos` (
 
 INSERT INTO `productos` (`id`, `nombre`, `fecha_registro`, `created_at`, `updated_at`) VALUES
 (1, 'PRODUCTO 1', '2026-02-26', '2026-02-26 18:52:39', '2026-02-26 18:52:39'),
-(2, 'PRODUCTO 2', '2026-02-26', '2026-02-26 18:58:30', '2026-02-26 18:58:30');
+(2, 'PRODUCTO 2', '2026-02-26', '2026-02-26 18:58:30', '2026-02-26 18:58:30'),
+(3, 'PRODUCTO 3', '2026-03-04', '2026-03-04 14:01:51', '2026-03-04 14:01:51');
 
 -- --------------------------------------------------------
 
@@ -267,7 +364,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `usuario`, `nombre`, `paterno`, `materno`, `ci`, `ci_exp`, `dir`, `correo`, `fono`, `password`, `acceso`, `tipo`, `foto`, `fecha_registro`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin', 'admin', '', '0', '', '', '', '', '$2y$12$65d4fgZsvBV5Lc/AxNKh4eoUdbGyaczQ4sSco20feSQANshNLuxSC', 1, 'ADMINISTRADOR', NULL, '2025-10-01', 1, '2026-02-17 22:21:27', '2026-02-17 22:21:27');
+(1, 'admin', 'admin', 'admin', '', '0', '', '', '', '', '$2y$12$65d4fgZsvBV5Lc/AxNKh4eoUdbGyaczQ4sSco20feSQANshNLuxSC', 1, 'ADMINISTRADOR', NULL, '2025-10-01', 1, '2026-02-17 22:21:27', '2026-02-17 22:21:27'),
+(2, 'JPERES', 'JUAN', 'PERES', '', '123456', 'LP', 'LOS PEDREGALES', 'juan@gmail.com', '78787878', '$2y$12$O3N99suoM7QAEoghwE25S.nJ8kPsFM6W5sWCCx9d47pq0w2lNXPYS', 1, 'ADMINISTRADOR', '21772630076.jpg', '2026-03-04', 1, '2026-03-04 13:14:36', '2026-03-04 13:14:36'),
+(3, 'MGONZALES', 'MARIA', 'GONZALES', '', '1234567', 'CB', 'LOS PEDREGALES', NULL, '66464564', '$2y$12$XWbbFK5kIhgwy0MHvWp/2OGD8/EiCs46wsiTpMe7.Uzp3VRdDriFy', 1, 'GERENTE', NULL, '2026-03-04', 1, '2026-03-04 14:37:34', '2026-03-04 14:37:34'),
+(4, 'FRAMIRES', 'FRANZ', 'RAMIRES', '', '12345678', 'CB', 'LOS OLIVOS', NULL, '676767676', '$2y$12$nKj/GxFqDkkWCs0Cfs9Y6uTBadutKFpUI7/VKK1Ay5OLUU.nK4lN2', 1, 'SUPERVISOR', NULL, '2026-03-04', 1, '2026-03-04 14:37:54', '2026-03-04 14:37:54'),
+(5, 'AMARTINEZ', 'ALEX', 'MARTINEZ', '', '12345677', 'LP', 'LOS PEDREGALES', NULL, '67676767676', '$2y$12$FtjrXyO7Z5baC4N2CceJa.dvI77wIQbfI1ckNtZcZzD40ZWsS5LTe', 1, 'TÉCNICO', NULL, '2026-03-04', 1, '2026-03-04 14:39:55', '2026-03-04 14:39:55');
 
 --
 -- Índices para tablas volcadas
@@ -339,13 +440,13 @@ ALTER TABLE `configuracions`
 -- AUTO_INCREMENT de la tabla `control_calidads`
 --
 ALTER TABLE `control_calidads`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -357,25 +458,25 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `parametrizacions`
 --
 ALTER TABLE `parametrizacions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT de la tabla `produccions`
 --
 ALTER TABLE `produccions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas

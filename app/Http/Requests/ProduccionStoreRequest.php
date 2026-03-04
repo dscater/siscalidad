@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DiagnosticoUpdateRequest extends FormRequest
+class ProduccionStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,20 +22,17 @@ class DiagnosticoUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "paciente_id" => "required",
-            "diagnostico" => "required",
-            "archivo_edf" => "required",
-            "tipo_patologia_id" => "required",
+            "producto_id" => "required",
+            "fecha_inicio" => "required|date",
+            "descripcion" => "nullable",
         ];
     }
 
     public function messages()
     {
         return [
-            "paciente_id" => "Debes completar este campo",
-            "diagnostico" => "Debes completar este campo",
-            "archivo_edf" => "Debes completar este campo",
-            "tipo_patologia_id" => "Debes completar este campo",
+            "producto.required" => "Debes seleccionar un producto",
+            "fecha_inicio.required" => "Debes completar este campo",
         ];
     }
 }

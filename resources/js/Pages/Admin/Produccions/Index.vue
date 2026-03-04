@@ -1,31 +1,13 @@
-<script>
-const breadbrums = [
-    {
-        title: "Inicio",
-        disabled: false,
-        url: route("inicio"),
-        name_url: "inicio",
-    },
-    {
-        title: "HistorialPacientes",
-        disabled: false,
-        url: "",
-        name_url: "",
-    },
-];
-</script>
 <script setup>
 import { useApp } from "@/composables/useApp";
 import { Head, Link, router, usePage } from "@inertiajs/vue3";
-import { useHistorialPacientes } from "@/composables/historial_pacientes/useHistorialPacientes";
+import { useProduccions } from "@/composables/produccions/useProduccions";
 import { useAxios } from "@/composables/axios/useAxios";
 import { initDataTable } from "@/composables/datatable.js";
 import { ref, onMounted, onBeforeUnmount } from "vue";
 import PanelToolbar from "@/Components/PanelToolbar.vue";
 // import { useMenu } from "@/composables/useMenu";
 import Formulario from "./Formulario.vue";
-import { useFormater } from "@/composables/useFormater";
-const { getFormatoMoneda } = useFormater();
 // const { mobile, identificaDispositivo } = useMenu();
 const { props: props_page } = usePage();
 const { setLoading } = useApp();
@@ -35,57 +17,32 @@ onMounted(() => {
     }, 300);
 });
 
-const { setHistorialPaciente, limpiarHistorialPaciente } =
-    useHistorialPacientes();
+const { setProduccion, limpiarProduccion } = useProduccions();
 const { axiosDelete } = useAxios();
 
 const columns = [
     {
-        title: "",
+        title: "CÓDIGO",
         data: "id",
     },
     {
-        title: "PACIENTE",
-        data: "paciente.full_name",
+        title: "PRODUCTO",
+        data: "producto.nombre",
     },
     {
-        title: "MOTIVO CONSULTA",
-        data: "motivo_consulta",
+        title: "FECHA INICIO",
+        data: "fecha_inicio_t",
     },
     {
-        title: "HISTORIAL ENFERMEDAD ACTUAL",
-        data: "historial_enfermedad",
+        title: "DESCRIPCIÓN",
+        data: "descripcion",
     },
     {
-        title: "ANTECEDENTES PERSONALES",
-        data: "antecedentes_personales",
+        title: "ESTADO",
+        data: "estado",
     },
     {
-        title: "ANTECEDENTES FAMILIARES",
-        data: "antecedentes_familiares",
-    },
-    {
-        title: "ANTECEDENTES NO PATOLÓGICAS",
-        data: "antecedentes_no_personales",
-    },
-    {
-        title: "EXAMENES NEUROLÓGICOS",
-        data: "examenes_neurologicos",
-    },
-    {
-        title: "TRATAMIENTOS",
-        data: "tratamientos",
-    },
-    {
-        title: "EVOLUCIONES",
-        data: "evoluciones",
-    },
-    {
-        title: "CONSULTAS",
-        data: "consultas",
-    },
-    {
-        title: "FECHA REGISTRO",
+        title: "FECHA DE REGISTRO",
         data: "fecha_registro_t",
     },
     {
@@ -97,24 +54,29 @@ const columns = [
             if (
                 props_page.auth?.user.permisos == "*" ||
                 props_page.auth?.user.permisos.includes(
-                    "historial_pacientes.edit"
+                    "produccions.control_calidad",
                 )
+            ) {
+                buttons += `<button class="mx-0 rounded-0 btn btn-primary mx-1 control" data-id="${row.id}"><i class="fa fa-list-alt"></i></button>`;
+            }
+
+            if (
+                props_page.auth?.user.permisos == "*" ||
+                props_page.auth?.user.permisos.includes("produccions.edit")
             ) {
                 buttons += `<button class="mx-0 rounded-0 btn btn-warning editar" data-id="${row.id}"><i class="fa fa-edit"></i></button>`;
             }
 
             if (
                 props_page.auth?.user.permisos == "*" ||
-                props_page.auth?.user.permisos.includes(
-                    "historial_pacientes.destroy"
-                )
+                props_page.auth?.user.permisos.includes("produccions.destroy")
             ) {
                 buttons += ` <button class="mx-0 rounded-0 btn btn-danger eliminar"
                  data-id="${row.id}"
-                 data-nombre="${row.paciente.full_name}"
+                 data-nombre="${row.id} - ${row.producto.nombre}"
                  data-url="${route(
-                     "historial_pacientes.destroy",
-                     row.id
+                     "produccions.destroy",
+                     row.id,
                  )}"><i class="fa fa-trash"></i></button>`;
             }
 
@@ -127,24 +89,30 @@ const accion_dialog = ref(0);
 const open_dialog = ref(false);
 
 const agregarRegistro = () => {
-    limpiarHistorialPaciente();
+    limpiarProduccion();
     accion_dialog.value = 0;
     open_dialog.value = true;
 };
 
 const accionesRow = () => {
-    // editar
-    $("#table-historial_paciente").on("click", "button.editar", function (e) {
+    // control calidad
+    $("#table-produccion").on("click", "button.control", function (e) {
         e.preventDefault();
         let id = $(this).attr("data-id");
-        axios.get(route("historial_pacientes.show", id)).then((response) => {
-            setHistorialPaciente(response.data);
+        router.get(route("produccions.control_calidad", id));
+    });
+    // editar
+    $("#table-produccion").on("click", "button.editar", function (e) {
+        e.preventDefault();
+        let id = $(this).attr("data-id");
+        axios.get(route("produccions.show", id)).then((response) => {
+            setProduccion(response.data);
             accion_dialog.value = 1;
             open_dialog.value = true;
         });
     });
     // eliminar
-    $("#table-historial_paciente").on("click", "button.eliminar", function (e) {
+    $("#table-produccion").on("click", "button.eliminar", function (e) {
         e.preventDefault();
         let nombre = $(this).attr("data-nombre");
         let id = $(this).attr("data-id");
@@ -160,7 +128,7 @@ const accionesRow = () => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
                 let respuesta = await axiosDelete(
-                    route("historial_pacientes.destroy", id)
+                    route("produccions.destroy", id),
                 );
                 if (respuesta && respuesta.sw) {
                     updateDatatable();
@@ -181,9 +149,9 @@ const updateDatatable = () => {
 
 onMounted(async () => {
     datatable = initDataTable(
-        "#table-historial_paciente",
+        "#table-produccion",
         columns,
-        route("historial_pacientes.api")
+        route("produccions.api"),
     );
     input_search = document.querySelector('input[type="search"]');
 
@@ -210,16 +178,16 @@ onBeforeUnmount(() => {
 });
 </script>
 <template>
-    <Head title="Historial de Pacientes"></Head>
+    <Head title="Producción"></Head>
 
     <!-- BEGIN breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="javascript:;">Inicio</a></li>
-        <li class="breadcrumb-item active">Historial de Pacientes</li>
+        <li class="breadcrumb-item active">Producción</li>
     </ol>
     <!-- END breadcrumb -->
     <!-- BEGIN page-header -->
-    <h1 class="page-header">Historial de Pacientes</h1>
+    <h1 class="page-header">Producción</h1>
     <!-- END page-header -->
 
     <div class="row">
@@ -233,7 +201,7 @@ onBeforeUnmount(() => {
                             v-if="
                                 props_page.auth?.user.permisos == '*' ||
                                 props_page.auth?.user.permisos.includes(
-                                    'historial_pacientes.create'
+                                    'produccions.create',
                                 )
                             "
                             type="button"
@@ -252,24 +220,15 @@ onBeforeUnmount(() => {
                 <!-- BEGIN panel-body -->
                 <div class="panel-body">
                     <table
-                        id="table-historial_paciente"
+                        id="table-produccion"
                         width="100%"
                         class="table table-striped table-bordered align-middle text-nowrap tabla_datos"
                     >
                         <thead>
                             <tr>
-                                <th width="2%"></th>
+                                <th width="5%"></th>
                                 <th></th>
-                                <th width="10%"></th>
-                                <th width="10%"></th>
-                                <th width="10%"></th>
-                                <th width="10%"></th>
-                                <th width="10%"></th>
-                                <th width="10%"></th>
-                                <th width="10%"></th>
-                                <th width="10%"></th>
-                                <th width="10%"></th>
-                                <th width="10%"></th>
+                                <th></th>
                                 <th width="5%"></th>
                             </tr>
                         </thead>

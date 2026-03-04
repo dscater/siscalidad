@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Diagnosticos</title>
+    <title>Pacientes</title>
     <style type="text/css">
         * {
             font-family: sans-serif;
@@ -17,11 +17,12 @@
         }
 
         table {
-            width: 100%;
+            width: 70%;
             border-collapse: collapse;
             table-layout: fixed;
             margin-top: 20px;
             page-break-before: avoid;
+            margin: auto;
         }
 
         table thead tr th,
@@ -31,11 +32,11 @@
         }
 
         table thead tr th {
-            font-size: 9pt;
+            font-size: 7pt;
         }
 
         table tbody tr td {
-            font-size: 10pt;
+            font-size: 6pt;
         }
 
 
@@ -81,10 +82,6 @@
             text-align: right;
             padding-right: 15px;
             font-weight: bold;
-        }
-
-        table {
-            width: 100%;
         }
 
         table thead {
@@ -138,20 +135,10 @@
             color: white;
         }
 
-        .bold {
-            font-weight: bold;
-        }
-
-        .derecha {
-            text-align: right;
-        }
+        .txt_rojo {}
 
         .img_celda img {
             width: 45px;
-        }
-
-        .crema {
-            background: rgb(255, 252, 213);
         }
     </style>
 </head>
@@ -165,40 +152,26 @@
         <h2 class="titulo">
             {{ $configuracion->first()->nombre_sistema }}
         </h2>
-        <h4 class="texto">REPORTE DE DIAGNÓSTICO</h4>
+        <h4 class="texto">LISTA DE PRODUCTOS</h4>
         <h4 class="fecha">Expedido: {{ date('d-m-Y') }}</h4>
     </div>
-
-    <table style="border-collapse: separate; border-spacing:10px 10px;">
+    <table border="1">
+        <thead class="bg-principal">
+            <tr>
+                <th width="8%">N°</th>
+                <th>NOMBRE</th>
+            </tr>
+        </thead>
         <tbody>
-            <tr>
-                <td width="45%" class="derecha bold">Nombre(s):</td>
-                <td>{{ $diagnostico->paciente->nombre }}</td>
-            </tr>
-            <tr>
-                <td class="derecha bold">Apellidos:</td>
-                <td>{{ $diagnostico->paciente->paterno }} {{ $diagnostico->paciente->matenro }}</td>
-            </tr>
-            <tr>
-                <td class="derecha bold">Nro. de C.I.:</td>
-                <td>{{ $diagnostico->paciente->full_ci }}</td>
-            </tr>
-            <tr>
-                <td class="derecha bold">Fecha de Nacimiento:</td>
-                <td>{{ $diagnostico->paciente->fecha_nac_t }}</td>
-            </tr>
-            <tr>
-                <td class="derecha bold">Género:</td>
-                <td>{{ $diagnostico->paciente->genero }}</td>
-            </tr>
-            <tr>
-                <td class="derecha bold">Resultado del diagnostico:</td>
-                <td>{{ $diagnostico->diagnostico }}</td>
-            </tr>
-            <tr>
-                <td class="derecha bold">Fecha:</td>
-                <td>{{ $diagnostico->fecha_registro_t }}</td>
-            </tr>
+            @php
+                $cont = 1;
+            @endphp
+            @foreach ($productos as $producto)
+                <tr>
+                    <td class="centreado">{{ $cont++ }}</td>
+                    <td class="">{{ $producto->nombre }}</td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
 </body>

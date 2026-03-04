@@ -535,7 +535,7 @@ const logout = () => {
                 <div
                     v-if="
                         user_logeado.permisos == '*' ||
-                        user_logeado.permisos.includes('productos.index')
+                        user_logeado.permisos.includes('produccions.index')
                     "
                     class="menu-item"
                     :class="[
@@ -612,7 +612,16 @@ const logout = () => {
                     v-if="
                         user_logeado.permisos == '*' ||
                         user_logeado.permisos.includes('reportes.usuarios') ||
-                        user_logeado.permisos.includes('reportes.pacientes')
+                        user_logeado.permisos.includes('reportes.productos') ||
+                        user_logeado.permisos.includes(
+                            'reportes.produccions',
+                        ) ||
+                        user_logeado.permisos.includes(
+                            'reportes.calidad_productos',
+                        ) ||
+                        user_logeado.permisos.includes(
+                            'reportes.cantidad_productos',
+                        )
                     "
                 >
                     REPORTES
@@ -620,44 +629,83 @@ const logout = () => {
                 <div
                     v-if="
                         user_logeado.permisos == '*' ||
-                        user_logeado.permisos.includes('reportes.usuarios')
+                        user_logeado.permisos.includes('reportes.usuarios') ||
+                        user_logeado.permisos.includes('reportes.productos') ||
+                        user_logeado.permisos.includes(
+                            'reportes.produccions',
+                        ) ||
+                        user_logeado.permisos.includes(
+                            'reportes.calidad_productos',
+                        ) ||
+                        user_logeado.permisos.includes(
+                            'reportes.cantidad_productos',
+                        )
                     "
                     class="menu-item"
-                    :class="[
-                        route_current == 'reportes.usuarios'
-                            ? 'active'
-                            : 'none',
-                    ]"
                 >
-                    <Link :href="route('reportes.usuarios')" class="menu-link">
+                    <Link
+                        v-if="
+                            user_logeado.permisos == '*' ||
+                            user_logeado.permisos.includes('reportes.usuarios')
+                        "
+                        :href="route('reportes.usuarios')"
+                        class="menu-link"
+                        :class="
+                            route_current == 'reportes.usuarios'
+                                ? 'active'
+                                : 'none'
+                        "
+                    >
                         <div class="menu-icon">
                             <i class="fa fa-file-alt"></i>
                         </div>
                         <div class="menu-text">Lista de Usuarios</div>
                     </Link>
-                    <Link :href="route('reportes.usuarios')" class="menu-link">
+                    <Link
+                        :href="route('reportes.productos')"
+                        class="menu-link"
+                        :class="
+                            route_current == 'reportes.productos'
+                                ? 'active'
+                                : 'none'
+                        "
+                    >
                         <div class="menu-icon">
                             <i class="fa fa-file-alt"></i>
                         </div>
                         <div class="menu-text">Lista de Productos</div>
                     </Link>
-                    <Link :href="route('reportes.usuarios')" class="menu-link">
+                    <Link
+                        :href="route('reportes.produccions')"
+                        class="menu-link"
+                        :class="
+                            route_current == 'reportes.produccions'
+                                ? 'active'
+                                : 'none'
+                        "
+                    >
                         <div class="menu-icon">
                             <i class="fa fa-file-alt"></i>
                         </div>
                         <div class="menu-text">
                             Lista de Producción de productos
                         </div> </Link
-                    ><Link :href="route('reportes.usuarios')" class="menu-link">
+                    ><Link
+                        :href="route('reportes.calidad_productos')"
+                        class="menu-link"
+                    >
                         <div class="menu-icon">
-                            <i class="fa fa-file-alt"></i>
+                            <i class="fa fa-chart-column"></i>
                         </div>
                         <div class="menu-text">
                             Reporte de Calidad de Productos
                         </div> </Link
-                    ><Link :href="route('reportes.usuarios')" class="menu-link">
+                    ><Link
+                        :href="route('reportes.cantidad_productos')"
+                        class="menu-link"
+                    >
                         <div class="menu-icon">
-                            <i class="fa fa-file-alt"></i>
+                            <i class="fa fa-chart-column"></i>
                         </div>
                         <div class="menu-text">
                             Reporte Cantidad de Producción Según Calidad
